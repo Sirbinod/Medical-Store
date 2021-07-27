@@ -1,0 +1,27 @@
+.lerge_banner {
+  height: 27rem;
+  .banner_image {
+    height: 100%;
+  }
+  .banner_contain {
+    text-align: left;
+    padding: 4em 0 3em 3em;
+    width: 20 rem;
+    // align-items: center;
+    .banner_s_text {
+      color: #0f3f3f;
+      font-size: 1.7rem;
+      font-weight: 500;
+    }
+    .banner_l_text {
+      color: #f2446f;
+      font-size: 2.6rem;
+      font-weight: 600;
+    }
+    .banner_button {
+      background-color: #269b9b;
+      font-size: 1.4rem;
+      border: none;
+    }
+  }
+}
