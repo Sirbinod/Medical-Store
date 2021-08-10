@@ -1,10 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
+$lato: "Lato";
+$open-sans: "Roboto";
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: $lato, $open-sans;
+  // font-family: ui-rounds;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f5f5f5 !important;
 }
 
 code {
@@ -15,6 +19,9 @@ code {
   // width: 1188px;
   max-width: 1230px !important;
   margin: 0 auto;
+}
+a {
+  text-decoration: none !important;
 }
 .react-multiple-carousel__arrow {
   background: none !important;
@@ -29,7 +36,8 @@ code {
   left: calc(0% + 0px) !important;
 }
 .react-multi-carousel-item {
-  width: 241.5px !important;
+  width: 227.5px !important;
+  margin: 0 1rem 0 0;
 }
 .react-multi-carousel-list {
   padding-bottom: 1rem !important;

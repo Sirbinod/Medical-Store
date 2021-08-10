@@ -1,0 +1,51 @@
+.product-details {
+  .product-details-images {
+    border: 1px solid;
+    .product-main-image {
+      width: 25rem;
+      height: 25rem;
+      border: 1px solid;
+    }
+    .thump-image {
+      border: 1px solid;
+    }
+  }
+  .product-details-contains {
+    border: 1px solid;
+    .product-rating {
+      align-items: center;
+      display: flex;
+      .reviews {
+        padding: 0 1em;
+      }
+    }
+    .product-details-old-price {
+      padding: 0.4rem 0 0.2rem;
+      .cut-price {
+        text-decoration: line-through;
+        color: gray;
+      }
+      .discount {
+        color: rgb(250, 214, 14);
+        padding: 0 0.5em;
+      }
+    }
+    .product-details-new-price {
+      font-size: 1.8rem;
+      padding: 0 0 0.3rem;
+    }
+    .product-quantity {
+      padding: 0.5rem 0;
+      .product-quantity-box {
+      }
+    }
+  }
+}
+.cut-price {
+  text-decoration: line-through;
+  color: gray;
+}
+.discount {
+  color: rgb(250, 167, 14);
+  padding: 0 0.5em;
+}

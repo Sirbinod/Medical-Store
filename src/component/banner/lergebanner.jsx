@@ -12,7 +12,7 @@ const Lergebanner = () => {
         <Card className="lerge_banner text-white">
           <Card.Img
             className="banner_image"
-            src="https://images.unsplash.com/photo-1584362917165-526a968579e8?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bWVkaWNpbmV8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80"
+            src="https://t3.ftcdn.net/jpg/02/28/20/08/360_F_228200877_hJtrKF1lEnN8AUDLtewIohPXZSwxH1no.jpg"
             alt="Card image"
           />
           <Card.ImgOverlay>
@@ -28,7 +28,7 @@ const Lergebanner = () => {
         <Card className="lerge_banner text-white">
           <Card.Img
             className="banner_image"
-            src="https://images.unsplash.com/photo-1584362917165-526a968579e8?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bWVkaWNpbmV8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80"
+            src="https://thumbs.dreamstime.com/b/shopping-cart-medical-pills-green-background-banner-shopping-cart-medical-pills-green-background-banner-203006886.jpg"
             alt="Card image"
           />
           <Card.ImgOverlay>

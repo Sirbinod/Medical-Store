@@ -1,13 +1,28 @@
 import React from "react";
-import {Button, Form, Navbar, Nav, NavDropdown} from "react-bootstrap";
+import {
+  Button,
+  Form,
+  Navbar,
+  Nav,
+  NavDropdown,
+  Dropdown,
+} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {BiSearch} from "react-icons/bi";
-import {MdFavoriteBorder} from "react-icons/md";
 import {BiCart} from "react-icons/bi";
 import {BsList, BsPersonFill} from "react-icons/bs";
-import {useEffect} from "react";
+import {MdFavoriteBorder} from "react-icons/md";
+import PropTypes from "prop-types";
 
-const NavigationBar = () => {
+import {useEffect} from "react";
+import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {connect} from "react-redux";
+
+import {showRightSidebarAction} from "../../store/layout/action";
+import rightSideBar from "../rightSideBar/rightSideBar";
+
+const NavigationBar = (props) => {
   // show category manu and hide scrolly
   // const handleScroll = () => {
   //   const selector = document.querySelector(".custom-btn");
@@ -29,13 +44,20 @@ const NavigationBar = () => {
   //   };
   // }, [handleScroll]);
   // demo category data
+
+  const showRightSidebar = useSelector((state) => state.Layout);
+  // const dispatch = useDispatch();
+  // const showRightSideBar = () => {
+  //   dispatch(showRightSidebarAction(!showRightSidebar));
+  // };
+
   const Category = [
-    {title: "ELectronic Devices"},
+    {title: "Genral Medicine"},
     {title: "Health & Beauty"},
-    {title: "Babies & Toys"},
-    {title: "Grocies & Pets"},
+    {title: "Babies Medicine"},
+    {title: "Pets medicine"},
     {title: "Sport & Lifestyle"},
-    {title: "Watches & Bags"},
+    {title: "Healthy Living"},
   ];
   return (
     <header>
@@ -43,9 +65,10 @@ const NavigationBar = () => {
       <div className="header-top">
         <div className="container">
           <div className="header-top-contain">
-            <div className="logo">
-              <h2>Pharmmandu</h2>
-            </div>
+            <Link to="/" className="logo">
+              <h2>Pharmamandu</h2>
+            </Link>
+
             {/* search field  */}
             <Form className="inline-form">
               <input
@@ -61,12 +84,59 @@ const NavigationBar = () => {
             <div className="group-cart">
               <div className="icons">
                 <span className="count-cart">0</span>
-                <MdFavoriteBorder className="icon" />
+
+                <MdFavoriteBorder
+                  onClick={() => {
+                    document
+                      .getElementsByTagName("body")[0]
+                      .classList.add("right-bar-enabled");
+                  }}
+                  className="icon"
+                />
               </div>
-              <div className="icons">
-                <span className="count-cart">0</span>
-                <BiCart className="icon" />
-              </div>
+
+              <Dropdown className="carts">
+                <Dropdown.Toggle className="cart_dropdown" id="dropdown-basic">
+                  <div className="icons">
+                    <span className="counts-cart">0</span>
+                    <BiCart className="icon" />
+                  </div>
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu className="cart_manu">
+                  <Dropdown.Item className="cart_total_info">
+                    <div>
+                      Item: <span>3</span>
+                    </div>
+                    <div>
+                      Total: <span>$200:00</span>
+                    </div>
+                  </Dropdown.Item>
+                  <Dropdown.Divider />
+                  <Dropdown.Item className="cart_product">
+                    <div className="cart_product_image">
+                      <img
+                        src="https://thumbs.dreamstime.com/b/small-medicine-tablets-pills-spilling-out-bottle-71025019.jpg"
+                        alt="cart_image"
+                        style={{height: "100%"}}
+                      />
+                    </div>
+                    <div className="cart_product_info">
+                      <h5 className="cart_product_name">Cart product</h5>
+                      <div className="cart_product_price">
+                        <span className="cart_price">$100</span>
+                        <span className="cart_quentity"> Quantity:01</span>
+                      </div>
+                    </div>
+                  </Dropdown.Item>
+                  <Dropdown.Divider />
+                  <Dropdown.Item className="cart_link_button">
+                    <div className="view_cart">View Cart</div>
+                    <div className="check_out">Check Out</div>
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+
               <div className="price-cart">
                 <span className="price-title">My Cart</span>
                 <span className="price">$0.00</span>
@@ -83,87 +153,20 @@ const NavigationBar = () => {
           <Navbar expand="lg" className="navbar">
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-              <div className="dropdown custom-btn">
-                {/* all category  */}
-                <button
-                  className="btn button-custom dropdown-toggle"
-                  type="button"
-                  id="dropdownMenuButton"
-                  data-toggle="dropdown"
-                  aria-haspopup="false"
-                  aria-expanded="true"
+              <Dropdown>
+                <Dropdown.Toggle
+                  className="custom_category"
+                  id="dropdown-basic"
                 >
-                  <BsList className="category-icon" />
-                  All Category
-                </button>
+                  ALl Category
+                </Dropdown.Toggle>
 
-                <ul
-                  className="dropdown-menu custom-btn"
-                  aria-labelledby="dropdownMenuButton"
-                >
-                  {Category.map((data) => (
-                    <li key={data.title}>
-                      <a className="dropdown-item" href="#">
-                        {data.title}
-                      </a>
-                      <ul className="dropdown-menu dropdown-submenu">
-                        <li>
-                          <a className="dropdown-item" href="#">
-                            Child Menu 1
-                          </a>
-                          <ul className="dropdown-menu dropdown-submenu">
-                            <li>
-                              <a className="dropdown-item" href="#">
-                                Submenu item
-                              </a>
-                            </li>
-                            <li>
-                              <a className="dropdown-item" href="#">
-                                Submenu item
-                              </a>
-                            </li>
-                          </ul>
-                        </li>
-
-                        <li>
-                          <a className="dropdown-item" href="#">
-                            Child Menu 2
-                          </a>
-                          <ul className="dropdown-menu dropdown-submenu">
-                            <li>
-                              <a className="dropdown-item" href="#">
-                                Submenu item
-                              </a>
-                            </li>
-                            <li>
-                              <a className="dropdown-item" href="#">
-                                Submenu item
-                              </a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li>
-                          <a className="dropdown-item" href="#">
-                            Child Menu 3
-                          </a>
-                          <ul className="dropdown-menu dropdown-submenu">
-                            <li>
-                              <a className="dropdown-item" href="#">
-                                Submenu item
-                              </a>
-                            </li>
-                            <li>
-                              <a className="dropdown-item" href="#">
-                                Submenu item
-                              </a>
-                            </li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </li>
+                <Dropdown.Menu>
+                  {Category.map((cat) => (
+                    <Dropdown.Item href="/filter">{cat.title}</Dropdown.Item>
                   ))}
-                </ul>
-              </div>
+                </Dropdown.Menu>
+              </Dropdown>
               <Nav className="nav-contain">
                 <Nav.Link href="#link">Flash Sale</Nav.Link>
                 <Nav.Link href="#link">Track Order</Nav.Link>

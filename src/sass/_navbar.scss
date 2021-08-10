@@ -4,7 +4,6 @@ header {
   position: sticky;
   top: 0;
   z-index: 9;
-  background-color: $whitecolor;
 
   // top navigation scss
   .header-top {
@@ -17,7 +16,8 @@ header {
       padding: 1.5rem 0;
       .logo {
         cursor: pointer;
-        color: $whitetext;
+        color: $white;
+        text-decoration: none;
       }
 
       .inline-form {
@@ -31,7 +31,7 @@ header {
           font-weight: 400;
           line-height: 1.5;
           color: #495057;
-          background-color: $whitecolor;
+          background-color: $white;
           background-clip: padding-box;
           border: 1px solid #ced4da;
           border-radius: 0.25rem;
@@ -53,9 +53,9 @@ header {
           font-size: 1rem;
           line-height: 1.5;
           border-radius: 0.25rem;
-          color: $whitecolor;
-          background-color: $green;
-          border-color: $green;
+          color: $white;
+          background-color: $secondaryColor;
+          // border-color: $green;
           border-top-left-radius: 0;
           border-bottom-left-radius: 0;
           border: none;
@@ -73,7 +73,7 @@ header {
         width: 9rem;
         justify-content: space-between;
         align-items: center;
-        color: white;
+        color: $white;
         .icons {
           margin-right: 0.5em;
           cursor: pointer;
@@ -90,9 +90,9 @@ header {
             width: 1.2rem;
             height: 1.2rem;
             text-align: center;
-            color: #fff;
+            color: $white;
             border-radius: 100%;
-            background-color: #f2446f;
+            background-color: $secondaryColor;
             z-index: 1;
           }
           .icon {
@@ -101,6 +101,123 @@ header {
             line-height: 2.4;
           }
         }
+        .dropdown:focus-visible {
+          outline: none;
+        }
+        .carts {
+          margin: 0 0 0 -1.2rem;
+
+          .cart_dropdown {
+            background: none;
+            border: none;
+            padding: 0 0.6rem 0 0 !important;
+            .icons {
+              margin-right: 0.5em;
+              cursor: pointer;
+              position: relative;
+              width: 2rem;
+              height: 2rem;
+              .counts-cart {
+                font-size: 0.65rem;
+                line-height: 2.1;
+                position: absolute;
+                top: -0.5rem;
+                right: -1.2rem !important;
+                display: inline-block;
+                width: 1.2rem;
+                height: 1.2rem;
+                text-align: center;
+                color: $white;
+                border-radius: 100%;
+                background-color: $secondaryColor;
+                z-index: 1;
+              }
+            }
+          }
+        }
+        .cart_dropdown:focus {
+          box-shadow: none;
+        }
+        .cart_dropdown:focus-visible {
+          outline: none !important;
+        }
+        .dropdown-toggle::after {
+          content: none;
+        }
+        .cart_manu {
+          position: absolute;
+          inset: 0px auto auto 0px;
+          transform: translate(-230px, 34px) !important;
+          min-width: 25rem !important;
+          box-shadow: 0px 5px 30px black;
+          .cart_total_info {
+            display: flex;
+            justify-content: space-between;
+          }
+          .cart_product {
+            display: flex;
+            padding: 0 3rem;
+            align-items: center;
+
+            .cart_product_image {
+              width: 4rem;
+              height: 4rem;
+            }
+            .cart_product_info {
+              margin-left: 2rem;
+              .cart_product_name {
+                font-size: 1rem;
+                font-weight: 500;
+              }
+              .cart_product_price {
+                width: 12rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .cart_price {
+                  font-size: 0.8rem;
+                  color: red;
+                }
+                .cart_quentity {
+                  font-size: 0.9rem;
+                  color: rgb(173, 169, 169);
+                }
+              }
+            }
+          }
+          .cart_link_button {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 3rem;
+            .view_cart {
+              border: 2px solid rgb(31, 31, 228);
+              padding: 0.5rem 2rem;
+              background: rgb(31, 31, 228);
+              border-radius: 4rem;
+              color: white;
+              font-size: 1rem;
+              font-weight: 600;
+            }
+            .check_out {
+              border: 2px solid #2bbfe0;
+              padding: 0.5rem 2rem;
+              background: #2bbfe0;
+              border-radius: 4rem;
+              color: white;
+              font-size: 1rem;
+              font-weight: 600;
+            }
+          }
+        }
+        .cart_manu::before {
+          content: " ";
+          position: absolute;
+          top: -20px;
+          right: 129px;
+          border: 10px solid transparent;
+          border-bottom-color: #fff;
+        }
+
         .price-cart {
           padding: 0 0.2em 0 0;
           text-align: center;
@@ -112,7 +229,7 @@ header {
           .price {
             font-size: 0.9rem;
             font-weight: bold;
-            color: #f2446f;
+            color: rgb(250, 243, 243);
           }
         }
       }
@@ -120,7 +237,7 @@ header {
   }
   // main navigatin scss
   .header-main {
-    background-color: #f4f5f7;
+    background-color: $white;
     height: 2.8rem;
     .navbar {
       // background-color: #222;
@@ -129,6 +246,14 @@ header {
       height: 2.8rem;
       .navbar-collapse {
         justify-content: space-between;
+      }
+      .custom_category {
+        background: none !important;
+        border: none !important;
+        color: #000;
+      }
+      .custom_category:focus {
+        box-shadow: none !important;
       }
       .dropdown-menu li {
         position: relative;
@@ -217,7 +342,7 @@ header {
 
   @media (max-width: $layout-breakpoint-very-small) {
     .navbar-light .navbar-toggler-icon {
-      background-color: white;
+      background-color: $white;
     }
     .small-form {
       display: block;

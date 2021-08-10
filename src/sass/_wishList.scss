@@ -1,0 +1,14 @@
+.wish_list {
+  background-color: #fff;
+  .image_cell {
+    width: 20rem;
+    .wish_list_image {
+      width: 10rem;
+      height: 8rem;
+    }
+  }
+  .action-icon {
+    font-size: 1.6rem;
+    margin: 0 0.5rem;
+  }
+}

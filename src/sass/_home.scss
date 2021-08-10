@@ -50,12 +50,12 @@
       .time {
         padding: 0 0.4em;
         margin: 0 0.5rem;
-        color: $whitecolor;
+        color: $white;
         background-color: red;
         border-radius: 0.5em;
         // height: 2.5rem;
         .number {
-          color: $whitecolor;
+          color: $white;
           font-weight: 500;
           font-size: 0.9rem;
           display: inline-flex;
@@ -131,13 +131,17 @@ $layout-breakpoint-very-small: 900px;
   }
 }
 .grid-col {
-  margin: 0.4rem;
+  margin: 1.3rem 0rem;
   flex: 0 0 auto !important;
-  width: 18.666667% !important;
+  width: 19.85% !important;
 }
 .just-for-you {
   border-bottom: 1px solid $borderline;
   margin: 3rem 0 1rem 0;
+  padding-bottom: 0.3em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   .grid-title {
     font-size: 1.4rem;
     text-transform: capitalize;

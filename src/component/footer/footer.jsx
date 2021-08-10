@@ -84,7 +84,7 @@ const Footer = () => {
           </Col>
           <Col>
             <div className="footer-info-contain">
-              <h5 className="footer-info-heading">Payment Methods</h5>
+              <h5 className="footer-info-heading">Connect</h5>
               <div className="footer-info-icon"></div>
             </div>
           </Col>

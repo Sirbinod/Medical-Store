@@ -2,7 +2,7 @@ import {
   PRODUCT_FETCH_START,
   PRODUCT_FETCH_SUCCESS,
   PRODUCT_FETCH_FAIL,
-} from "../action/actionType";
+} from "../product/actionType";
 
 const initState = {
   loading: false,

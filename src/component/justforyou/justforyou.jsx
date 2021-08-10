@@ -1,30 +1,51 @@
 import React from "react";
-import {Card} from "react-bootstrap";
+
 import {AiFillStar} from "react-icons/ai";
+import {MdFavoriteBorder} from "react-icons/md";
+import {BiCart} from "react-icons/bi";
+import {Link} from "react-router-dom";
+
 const Justforyou = (data) => {
   return (
-    <div>
-      <Card style={{width: "14.2rem", height: "26.3rem"}}>
-        <Card.Img className="product-image" variant="top" src={data.data.img} />
-        <Card.Body>
-          <Card.Title>{data.data.name}</Card.Title>
-          <Card.Text>
-            <span className="current-price">${data.data.price}</span>
-          </Card.Text>
-          <div className="star-rating">
+    <Link to="/product_details">
+      <div className="product-grid">
+        <div className="product-image">
+          <a href="#" className="image_wrap">
+            <img className="image" src={data.data.img} />
+          </a>
+          <span className="product-discount-label">-33%</span>
+          <ul className="product-links">
+            <li>
+              <a href="#" data-tip="Add to Wishlist">
+                <MdFavoriteBorder className="icon" />
+              </a>
+            </li>
+
+            <li>
+              <a href="#" data-tip="Add to Cart">
+                <BiCart className="icon" />
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div className="product-content">
+          <ul className="rating">
             <AiFillStar style={{color: "#f57224"}} />
             <AiFillStar style={{color: "#f57224"}} />
             <AiFillStar style={{color: "#f57224"}} />
             <AiFillStar style={{color: "#f57224"}} />
             <AiFillStar style={{color: "#f57224"}} />
+          </ul>
+          <h3 className="title">{data.data.name}</h3>
+          <div className="price">
+            <span>$90.00</span> $66.00
           </div>
-          <div className="cut-price">
-            <span className="old-price">${data.data.cut_price}</span>
-            <span className="discount">-{data.data.discount}</span>
-          </div>
-        </Card.Body>
-      </Card>
-    </div>
+          {/* <a className="add-to-cart" href="#">
+          add to cart
+        </a> */}
+        </div>
+      </div>
+    </Link>
   );
 };
 
