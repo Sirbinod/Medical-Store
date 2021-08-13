@@ -10,17 +10,10 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 import {BiSearch} from "react-icons/bi";
 import {BiCart} from "react-icons/bi";
-import {BsList, BsPersonFill} from "react-icons/bs";
+import {BsPersonFill} from "react-icons/bs";
 import {MdFavoriteBorder} from "react-icons/md";
-import PropTypes from "prop-types";
 
-import {useEffect} from "react";
 import {Link} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {connect} from "react-redux";
-
-import {showRightSidebarAction} from "../../store/layout/action";
-import rightSideBar from "../rightSideBar/rightSideBar";
 
 const NavigationBar = (props) => {
   // show category manu and hide scrolly
@@ -44,12 +37,6 @@ const NavigationBar = (props) => {
   //   };
   // }, [handleScroll]);
   // demo category data
-
-  const showRightSidebar = useSelector((state) => state.Layout);
-  // const dispatch = useDispatch();
-  // const showRightSideBar = () => {
-  //   dispatch(showRightSidebarAction(!showRightSidebar));
-  // };
 
   const Category = [
     {title: "Genral Medicine"},
@@ -94,48 +81,17 @@ const NavigationBar = (props) => {
                   className="icon"
                 />
               </div>
-
-              <Dropdown className="carts">
-                <Dropdown.Toggle className="cart_dropdown" id="dropdown-basic">
-                  <div className="icons">
-                    <span className="counts-cart">0</span>
-                    <BiCart className="icon" />
-                  </div>
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu className="cart_manu">
-                  <Dropdown.Item className="cart_total_info">
-                    <div>
-                      Item: <span>3</span>
-                    </div>
-                    <div>
-                      Total: <span>$200:00</span>
-                    </div>
-                  </Dropdown.Item>
-                  <Dropdown.Divider />
-                  <Dropdown.Item className="cart_product">
-                    <div className="cart_product_image">
-                      <img
-                        src="https://thumbs.dreamstime.com/b/small-medicine-tablets-pills-spilling-out-bottle-71025019.jpg"
-                        alt="cart_image"
-                        style={{height: "100%"}}
-                      />
-                    </div>
-                    <div className="cart_product_info">
-                      <h5 className="cart_product_name">Cart product</h5>
-                      <div className="cart_product_price">
-                        <span className="cart_price">$100</span>
-                        <span className="cart_quentity"> Quantity:01</span>
-                      </div>
-                    </div>
-                  </Dropdown.Item>
-                  <Dropdown.Divider />
-                  <Dropdown.Item className="cart_link_button">
-                    <div className="view_cart">View Cart</div>
-                    <div className="check_out">Check Out</div>
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
+              <div className="icons">
+                <span className="count-cart">0</span>
+                <BiCart
+                  onClick={() => {
+                    document
+                      .getElementsByTagName("body")[0]
+                      .classList.add("cart-right-bar-enabled");
+                  }}
+                  className="icon"
+                />
+              </div>
 
               <div className="price-cart">
                 <span className="price-title">My Cart</span>
@@ -153,20 +109,83 @@ const NavigationBar = (props) => {
           <Navbar expand="lg" className="navbar">
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-              <Dropdown>
-                <Dropdown.Toggle
-                  className="custom_category"
-                  id="dropdown-basic"
-                >
-                  ALl Category
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu>
-                  {Category.map((cat) => (
-                    <Dropdown.Item href="/filter">{cat.title}</Dropdown.Item>
-                  ))}
-                </Dropdown.Menu>
-              </Dropdown>
+              <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                  <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                      <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        id="navbarDropdownMenuLink"
+                        role="button"
+                        data-mdb-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        Dropdown link
+                      </a>
+                      <ul
+                        class="dropdown-menu"
+                        aria-labelledby="navbarDropdownMenuLink"
+                      >
+                        <li>
+                          <a class="dropdown-item" href="#">
+                            Action
+                          </a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item" href="#">
+                            Another action
+                          </a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item" href="#">
+                            Submenu &raquo;
+                          </a>
+                          <ul class="dropdown-menu dropdown-submenu">
+                            <li>
+                              <a class="dropdown-item" href="#">
+                                Submenu item 1
+                              </a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">
+                                Submenu item 2
+                              </a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">
+                                Submenu item 3 &raquo;{" "}
+                              </a>
+                              <ul class="dropdown-menu dropdown-submenu">
+                                <li>
+                                  <a class="dropdown-item" href="#">
+                                    Multi level 1
+                                  </a>
+                                </li>
+                                <li>
+                                  <a class="dropdown-item" href="#">
+                                    Multi level 2
+                                  </a>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">
+                                Submenu item 4
+                              </a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">
+                                Submenu item 5
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
               <Nav className="nav-contain">
                 <Nav.Link href="#link">Flash Sale</Nav.Link>
                 <Nav.Link href="#link">Track Order</Nav.Link>

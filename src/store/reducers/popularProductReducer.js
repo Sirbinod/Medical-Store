@@ -1,34 +1,36 @@
 import {
   PRODUCT_FETCH_START,
-  PRODUCT_FETCH_SUCCESS,
+  //   PRODUCT_FETCH_SUCCESS,
   PRODUCT_FETCH_FAIL,
-} from "../product/actionType";
-
+  POPULAR_PRODUCT_FETCH,
+} from "../action/actionType";
 const initState = {
   loading: false,
   success: false,
-  product: [],
+  //   product: [],
+  popular: [],
   error: null,
 };
 
-const Product = (state = initState, action) => {
+const PopularProductReducer = (state = initState, action) => {
   switch (action.type) {
     case PRODUCT_FETCH_START:
       return {
         ...state,
         loading: true,
       };
-    case PRODUCT_FETCH_SUCCESS:
-      return {
-        ...state,
-        product: action.payload,
-        success: true,
-        loading: false,
-      };
+
     case PRODUCT_FETCH_FAIL:
       return {
         ...state,
         error: action.payload,
+        loading: false,
+      };
+    case POPULAR_PRODUCT_FETCH:
+      return {
+        ...state,
+        popular: action.payload,
+        success: true,
         loading: false,
       };
 
@@ -36,4 +38,4 @@ const Product = (state = initState, action) => {
       return state;
   }
 };
-export default Product;
+export default PopularProductReducer;

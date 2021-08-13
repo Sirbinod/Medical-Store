@@ -6,6 +6,7 @@ import Footer from "./component/footer/footer";
 import Product_details from "./screen/product_details/product_details";
 import Wish_list from "./screen/wish_List/wish_list";
 import RightSideBar from "./component/rightSideBar/rightSideBar";
+import CartRightSideBar from "./component/rightSideBar/addToCart";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/wish_list" component={Wish_list} />
       </Switch>
       <RightSideBar />
+      <CartRightSideBar />
       <Footer />
     </>
   );

@@ -10,12 +10,10 @@ import truck from "../../assets/image/shipping-truck 1.svg";
 import person from "../../assets/image/customer-support 1.svg";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {Link} from "react-router-dom";
-import {
-  productFetch,
-  productFetchStart,
-  productFetchSuccess,
-} from "../../store/product/action";
+import {productFetch} from "../../store/action/productAction";
+import {popularProduct} from "../../store/action/popularProduct";
+// import {getUser} from "../../store/action/productAction";
+// import {fatchProduct} from "../../store/saga/productSaga";
 
 const responsive = {
   superLargeDesktop: {
@@ -38,14 +36,23 @@ const responsive = {
 };
 
 const Home = () => {
-  // const dispatch = useDispatch();
-  // const {product} = useSelector((state) => state.Products);
-  // useEffect(() => {
-  //   dispatch(productFetchStart());
-  // }, [dispatch]);
-  // product.map((data) => console.log(data));
-  // console.log(product.docs);
-  const product = [
+  const dispatch = useDispatch();
+  // const {product} = useSelector((state) => state.product);
+  const {product, loading, error} = useSelector((state) => state.product);
+
+  const {popular, success} = useSelector((state) => state.popularProduct);
+  useEffect(() => {
+    dispatch(productFetch());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(popularProduct());
+  }, [dispatch]);
+
+  console.log(popular.data, "hehehehehehehehehehheeh_____++++++====");
+  const productData = product.data;
+  console.log(productData, "hehehehhehehehehhe");
+  const products = [
     {
       id: 1,
       name: "Helth well madiceny Bundle",
@@ -128,7 +135,7 @@ const Home = () => {
       img: "https://www.rosemontpharma.com/assets/images/medicine-poured-into-measuring-spoon.jpg",
     },
   ];
-  const loading = false;
+  // const loading = false;
 
   return (
     <>
@@ -143,7 +150,7 @@ const Home = () => {
             <div className="container">
               <div className="flash-deal">
                 <div className="flash-title">
-                  <h3>Flesh Deal</h3>
+                  <h3>Fla sh Deal</h3>
                 </div>
                 <div className="flash-countdown">
                   Hurry Up! Offer ends in:
@@ -164,7 +171,7 @@ const Home = () => {
                 </div>
               </div>
               <Carousel responsive={responsive}>
-                {product.map((data) => (
+                {products.map((data) => (
                   <Justforyou data={data} />
                 ))}
               </Carousel>
@@ -215,7 +222,7 @@ const Home = () => {
                 </Button>
               </div>
               <Carousel responsive={responsive}>
-                {product.map((data) => (
+                {products.map((data) => (
                   <Justforyou data={data} />
                 ))}
               </Carousel>
@@ -274,7 +281,7 @@ const Home = () => {
                 </Button>
               </div>
               <Row>
-                {product.map((data) => (
+                {productData.docs.map((data) => (
                   <Col className="grid-col">
                     <Justforyou data={data} />
                   </Col>

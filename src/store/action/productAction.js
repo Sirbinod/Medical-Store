@@ -25,17 +25,12 @@ export const productFetchFail = (error) => {
   };
 };
 
-// export const productFetch = () => async (dispath) => {
-//   dispath(productFetchStart());
-//   try {
-//     const response = await normalGet(productListapi);
-//     console.log(response.data.success, "whlknakjlfndkjnkjdfnk");
-//     if (response.data.success) {
-//       dispath(productFetchSuccess(response.data.data));
-//     } else {
-//       dispath(productFetchFail(response.message));
-//     }
-//   } catch (err) {
-//     dispath(productFetchFail(err));
-//   }
-// };
+export const productFetch = () => async (dispath) => {
+  dispath(productFetchStart());
+  try {
+    const res = await normalGet(productListapi);
+    dispath(productFetchSuccess(res.data));
+  } catch (err) {
+    dispath(productFetchFail(err));
+  }
+};

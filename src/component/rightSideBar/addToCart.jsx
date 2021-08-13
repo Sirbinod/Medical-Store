@@ -6,10 +6,10 @@ import {RiDeleteBin6Line} from "react-icons/ri";
 import {Link} from "react-router-dom";
 import {Row, Col, Button} from "react-bootstrap";
 
-const RightSideBar = (props) => {
+const CartRightSideBar = (props) => {
   return (
     <>
-      <div className="right-bar">
+      <div className="cart-right-bar">
         <SimpleBar style={{height: "900px"}}>
           <div data-simplebar className="h-100">
             <div className="rightbar-title px-3 py-4">
@@ -19,13 +19,13 @@ const RightSideBar = (props) => {
                   e.preventDefault();
                   document
                     .getElementsByTagName("body")[0]
-                    .classList.remove("right-bar-enabled");
+                    .classList.remove("cart-right-bar-enabled");
                 }}
                 className="right-bar-toggle float-end"
               >
                 <AiOutlineClose className="noti-icon" />
               </Link>
-              <h5 className="m-0 wish-list">Wish List</h5>
+              <h5 className="m-0 wish-list">Cart</h5>
             </div>
 
             <hr className="my-0" />
@@ -44,9 +44,33 @@ const RightSideBar = (props) => {
               </Col>
             </Row>
             <hr className="mb-5 " />
-            <Link to="/wish_list" className="wishlist_link">
-              View Wishlist
-            </Link>
+            <div className="d-flex justify-content-around">
+              <div
+                onClick={(e) => {
+                  e.preventDefault();
+                  document
+                    .getElementsByTagName("body")[0]
+                    .classList.remove("cart-right-bar-enabled");
+                }}
+              >
+                <Link to="/wish_list" className="wishlist_link">
+                  View Cart
+                </Link>
+              </div>
+
+              <div
+                onClick={(e) => {
+                  e.preventDefault();
+                  document
+                    .getElementsByTagName("body")[0]
+                    .classList.remove("cart-right-bar-enabled");
+                }}
+              >
+                <Link to="/wish_list" className="wishlist_link">
+                  Checkout
+                </Link>
+              </div>
+            </div>
           </div>
         </SimpleBar>
       </div>
@@ -55,4 +79,4 @@ const RightSideBar = (props) => {
   );
 };
 
-export default RightSideBar;
+export default CartRightSideBar;
