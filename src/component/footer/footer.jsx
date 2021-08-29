@@ -55,27 +55,7 @@ const Footer = () => {
                   SUBSCRIBE
                 </Button>
               </Form>
-              <div className="mobile-app-link">
-                <div className="app-link-contain">
-                  <AiFillApple className="apple-icon" />
-                  <div className="app-link-info">
-                    <span className="inof-text">Available on the</span>
-                    <span className="info-name">Google Play</span>
-                  </div>
-                </div>
-                <div className="app-link-contain">
-                  <FaGooglePlay className="app-icon" />
-                  <div className="app-link-info">
-                    <span className="inof-text">Available on the</span>
-                    <span className="info-name">Google Play</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Col>
-        </Row>
-
-        <Row className="footer-info">
+              <Row className="footer-info">
           <Col>
             <div className="footer-info-contain">
               <h5 className="footer-info-heading">Payment Methods</h5>
@@ -89,6 +69,11 @@ const Footer = () => {
             </div>
           </Col>
         </Row>
+            </div>
+          </Col>
+        </Row>
+
+        
         <div className="footer-buttom">
           <span>
             2021 Copyright Powered by

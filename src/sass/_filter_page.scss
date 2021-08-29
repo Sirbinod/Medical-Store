@@ -10,7 +10,7 @@
 
       .filter_heading {
         font-size: 1.2rem;
-        font-weight: 500;
+        font-weight: 600;
         // background-color: green;
         padding: 0.5rem 1rem;
         // color: white;
@@ -31,11 +31,12 @@
     }
     .filter_right {
       width: 80%;
+
       .filter_right_header {
         background: #fff;
         margin: 0.4rem 0 1.2rem;
         height: 3.5rem;
-        padding: 10px 5px;
+        padding: 0.7rem;
         clear: left;
         .col-6 {
           float: left;

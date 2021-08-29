@@ -1,3 +1,4 @@
+@import "variable";
 .footer {
   background-color: #f3f6fa;
   .top-footer {
@@ -37,8 +38,11 @@
           font-size: 0.7rem;
           border-top-left-radius: calc(0rem - 0px);
           border-bottom-left-radius: calc(0rem - 0px);
-          background-color: rgb(181, 189, 181) !important;
-          border-color: rgb(181, 189, 181) !important ;
+          background-color: $secondaryColor !important;
+          border-color: $secondaryColor !important ;
+        }
+        .custom-searech:focus {
+          outline: none;
         }
       }
       .mobile-app-link {
@@ -79,8 +83,6 @@
     }
   }
   .footer-info {
-    border-bottom: 0.1rem solid #c4c4c4;
-
     padding: 0.3em 0;
     margin-top: 0.5em;
     .footer-info-contain {

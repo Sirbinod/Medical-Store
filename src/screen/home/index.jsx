@@ -2,56 +2,53 @@ import React from "react";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import {Card, Row, Col, Button} from "react-bootstrap";
+import { Card, Row, Col, Button } from "react-bootstrap";
 import Lergebanner from "../../component/banner/lergebanner";
 import Justforyou from "../../component/justforyou/justforyou";
 import money from "../../assets/image/credit-card 1.svg";
 import truck from "../../assets/image/shipping-truck 1.svg";
 import person from "../../assets/image/customer-support 1.svg";
-import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
-import {productFetch} from "../../store/action/productAction";
-import {popularProduct} from "../../store/action/popularProduct";
-// import {getUser} from "../../store/action/productAction";
-// import {fatchProduct} from "../../store/saga/productSaga";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import {
+  discountProduct,
+  latestProducts,
+  popularProduct,
+  productFetch,
+} from "../../store/action/productAction";
 
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
-    breakpoint: {max: 4000, min: 3000},
+    breakpoint: { max: 4000, min: 3000 },
     items: 7,
   },
   desktop: {
-    breakpoint: {max: 3000, min: 1024},
+    breakpoint: { max: 3000, min: 1024 },
     items: 5,
   },
   tablet: {
-    breakpoint: {max: 1024, min: 580},
+    breakpoint: { max: 1024, min: 580 },
     items: 3,
   },
   mobile: {
-    breakpoint: {max: 580, min: 0},
+    breakpoint: { max: 580, min: 0 },
     items: 2,
   },
 };
 
 const Home = () => {
   const dispatch = useDispatch();
-  // const {product} = useSelector((state) => state.product);
-  const {product, loading, error} = useSelector((state) => state.product);
-
-  const {popular, success} = useSelector((state) => state.popularProduct);
-  useEffect(() => {
-    dispatch(productFetch());
-  }, [dispatch]);
+  const { loading, popular, mostDiscount, latestProduct } = useSelector(
+    (state) => state.product,
+  );
 
   useEffect(() => {
     dispatch(popularProduct());
+    dispatch(discountProduct());
+    dispatch(latestProducts());
   }, [dispatch]);
 
-  console.log(popular.data, "hehehehehehehehehehheeh_____++++++====");
-  const productData = product.data;
-  console.log(productData, "hehehehhehehehehhe");
   const products = [
     {
       id: 1,
@@ -135,217 +132,218 @@ const Home = () => {
       img: "https://www.rosemontpharma.com/assets/images/medicine-poured-into-measuring-spoon.jpg",
     },
   ];
-  // const loading = false;
 
   return (
     <>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <div>
-          <section className="banner-section">
-            <Lergebanner />
-          </section>
-          <section>
-            <div className="container">
-              <div className="flash-deal">
-                <div className="flash-title">
-                  <h3>Fla sh Deal</h3>
-                </div>
-                <div className="flash-countdown">
-                  Hurry Up! Offer ends in:
-                  <div className="countdown-time">
-                    <div className="time">
-                      <span className="number">10</span>
-                    </div>
-                    :
-                    <div className="time">
-                      <span className="number">10</span>
-                    </div>
-                    :
-                    <div className="time">
-                      <span className="number">10</span>
-                    </div>
-                  </div>
-                  hrs
-                </div>
+      <div>
+        <section className='banner-section'>
+          <Lergebanner />
+        </section>
+        <section>
+          <div className='container'>
+            <div className='flash-deal'>
+              <div className='flash-title'>
+                <h3>Most Discount</h3>
               </div>
+              <Button
+                style={{
+                  color: "white",
+                  backgroundColor: "#269b9b",
+                  borderColor: "#269b9b",
+                }}>
+                More
+              </Button>
+            </div>
+            {loading ? (
+              <>loading ... </>
+            ) : mostDiscount ? (
               <Carousel responsive={responsive}>
-                {products.map((data) => (
-                  <Justforyou data={data} />
+                {mostDiscount.map((mostDisData) => (
+                  <Justforyou data={mostDisData} />
                 ))}
               </Carousel>
-            </div>
-          </section>
+            ) : (
+              <> </>
+            )}
+          </div>
+        </section>
 
-          <section>
-            <div className="container">
-              <Row className="banar">
-                <Col xs={12} lg={6}>
-                  <Card className=" bg-dark text-white ">
-                    {/* <Card.Img
+        <section>
+          <div className='container'>
+            <Row className='banar'>
+              <Col xs={12} lg={6}>
+                <Card className=' bg-dark text-white '>
+                  {/* <Card.Img
+                    className='addss-image'
+                    src='https://images.ctfassets.net/hrltx12pl8hq/6TOyJZTDnuutGpSMYcFlfZ/4dfab047c1d94bbefb0f9325c54e08a2/01-nature_668593321.jpg?fit=fill&w=480&h=270'
+                    alt='Card image'
+                  /> */}
+                  <Card.ImgOverlay>
+                    <Card.Title>Ads Card</Card.Title>
+                    <Card.Text>This is Ad place</Card.Text>
+                  </Card.ImgOverlay>
+                </Card>
+              </Col>
+              <Col xs={12} lg={6}>
+                <Card className='bg-dark text-white'>
+                  {/* <Card.Img src="holder.js/100px270" alt="Card image" /> */}
+                  <Card.ImgOverlay>
+                    <Card.Title>Card Ads</Card.Title>
+                    <Card.Text>This is Ad place</Card.Text>
+                  </Card.ImgOverlay>
+                </Card>
+              </Col>
+            </Row>
+          </div>
+        </section>
+
+        <section>
+          <div className='container'>
+            <div className='most-popular'>
+              <h3 className='most-popular-title'>Most Popular</h3>
+              <Button
+                style={{
+                  color: "white",
+                  backgroundColor: "#269b9b",
+                  borderColor: "#269b9b",
+                }}>
+                More
+              </Button>
+            </div>
+
+            {loading ? (
+              <>loading ... </>
+            ) : popular ? (
+              <Carousel responsive={responsive}>
+                {popular.map((popularData) => (
+                  <Justforyou data={popularData} />
+                ))}
+              </Carousel>
+            ) : (
+              <> </>
+            )}
+          </div>
+        </section>
+        <section>
+          <div className='container'>
+            <Row className='banar'>
+              <Col xs={12} lg={4}>
+                <Card className=' bg-dark text-white '>
+                  {/* <Card.Img
                   className="addss-image"
                   src="https://images.ctfassets.net/hrltx12pl8hq/6TOyJZTDnuutGpSMYcFlfZ/4dfab047c1d94bbefb0f9325c54e08a2/01-nature_668593321.jpg?fit=fill&w=480&h=270"
                   alt="Card image"
                 /> */}
-                    <Card.ImgOverlay>
-                      <Card.Title>Ads Card</Card.Title>
-                      <Card.Text>This is Ad place</Card.Text>
-                    </Card.ImgOverlay>
-                  </Card>
-                </Col>
-                <Col xs={12} lg={6}>
-                  <Card className="bg-dark text-white">
-                    {/* <Card.Img src="holder.js/100px270" alt="Card image" /> */}
-                    <Card.ImgOverlay>
-                      <Card.Title>Card Ads</Card.Title>
-                      <Card.Text>This is Ad place</Card.Text>
-                    </Card.ImgOverlay>
-                  </Card>
-                </Col>
-              </Row>
-            </div>
-          </section>
+                  <Card.ImgOverlay>
+                    <Card.Title>Ads Card</Card.Title>
+                    <Card.Text>This is Ad place</Card.Text>
+                  </Card.ImgOverlay>
+                </Card>
+              </Col>
+              <Col xs={12} lg={4}>
+                <Card className='bg-dark text-white'>
+                  {/* <Card.Img src="holder.js/100px270" alt="Card image" /> */}
+                  <Card.ImgOverlay>
+                    <Card.Title>Card Ads</Card.Title>
+                    <Card.Text>This is Ad place</Card.Text>
+                  </Card.ImgOverlay>
+                </Card>
+              </Col>
+              <Col xs={12} lg={4}>
+                <Card className='bg-dark text-white'>
+                  {/* <Card.Img src="holder.js/100px270" alt="Card image" /> */}
+                  <Card.ImgOverlay>
+                    <Card.Title>Card Ads</Card.Title>
+                    <Card.Text>This is Ad place</Card.Text>
+                  </Card.ImgOverlay>
+                </Card>
+              </Col>
+            </Row>
+          </div>
+        </section>
 
-          <section>
-            <div className="container">
-              <div className="most-popular">
-                <h3 className="most-popular-title">Most Popular</h3>
-                <Button
-                  style={{
-                    color: "white",
-                    backgroundColor: "#269b9b",
-                    borderColor: "#269b9b",
-                  }}
-                >
-                  More
-                </Button>
-              </div>
-              <Carousel responsive={responsive}>
-                {products.map((data) => (
-                  <Justforyou data={data} />
-                ))}
-              </Carousel>
+        <section>
+          <div className='container'>
+            <div className='just-for-you'>
+              <h3 className='grid-title'>Just For You</h3>
+              <Button
+                style={{
+                  color: "white",
+                  backgroundColor: "#269b9b",
+                  borderColor: "#269b9b",
+                }}>
+                More
+              </Button>
             </div>
-          </section>
-          <section>
-            <div className="container">
-              <Row className="banar">
-                <Col xs={12} lg={4}>
-                  <Card className=" bg-dark text-white ">
-                    {/* <Card.Img
-                  className="addss-image"
-                  src="https://images.ctfassets.net/hrltx12pl8hq/6TOyJZTDnuutGpSMYcFlfZ/4dfab047c1d94bbefb0f9325c54e08a2/01-nature_668593321.jpg?fit=fill&w=480&h=270"
-                  alt="Card image"
-                /> */}
-                    <Card.ImgOverlay>
-                      <Card.Title>Ads Card</Card.Title>
-                      <Card.Text>This is Ad place</Card.Text>
-                    </Card.ImgOverlay>
-                  </Card>
-                </Col>
-                <Col xs={12} lg={4}>
-                  <Card className="bg-dark text-white">
-                    {/* <Card.Img src="holder.js/100px270" alt="Card image" /> */}
-                    <Card.ImgOverlay>
-                      <Card.Title>Card Ads</Card.Title>
-                      <Card.Text>This is Ad place</Card.Text>
-                    </Card.ImgOverlay>
-                  </Card>
-                </Col>
-                <Col xs={12} lg={4}>
-                  <Card className="bg-dark text-white">
-                    {/* <Card.Img src="holder.js/100px270" alt="Card image" /> */}
-                    <Card.ImgOverlay>
-                      <Card.Title>Card Ads</Card.Title>
-                      <Card.Text>This is Ad place</Card.Text>
-                    </Card.ImgOverlay>
-                  </Card>
-                </Col>
-              </Row>
-            </div>
-          </section>
-
-          <section>
-            <div className="container">
-              <div className="just-for-you">
-                <h3 className="grid-title">Just For You</h3>
-                <Button
-                  style={{
-                    color: "white",
-                    backgroundColor: "#269b9b",
-                    borderColor: "#269b9b",
-                  }}
-                >
-                  More
-                </Button>
-              </div>
+            {loading ? (
+              <> Loading.... </>
+            ) : latestProduct.data ? (
               <Row>
-                {productData.docs.map((data) => (
-                  <Col className="grid-col">
-                    <Justforyou data={data} />
+                {latestProduct.data.map((latestData) => (
+                  <Col className='grid-col'>
+                    <Justforyou data={latestData} />
                   </Col>
                 ))}
               </Row>
-            </div>
-          </section>
-          <section className="info-section">
-            <div className="container">
-              <Row>
-                <Col>
-                  <div className="info-card">
-                    <div className="info-logo">
-                      <img
-                        className="info-image"
-                        src={truck}
-                        alt="delivery truck"
-                      />
-                    </div>
-                    <div className="info-body">
-                      <span className="info-body-h">Free Delivery</span>
-                      <span className="info-body-p">
-                        For all orders over $120
-                      </span>
-                    </div>
+            ) : (
+              <></>
+            )}
+          </div>
+        </section>
+        <section className='info-section'>
+          <div className='container'>
+            <Row>
+              <Col>
+                <div className='info-card'>
+                  <div className='info-logo'>
+                    <img
+                      className='info-image'
+                      src={truck}
+                      alt='delivery truck'
+                    />
                   </div>
-                </Col>
-                <Col>
-                  <div className="info-card">
-                    <div className="info-logo">
-                      <img
-                        className="info-image"
-                        src={person}
-                        alt="hepl person"
-                      />
-                    </div>
-                    <div className="info-body">
-                      <span className="info-body-h">24/7 HELP CENTER</span>
-                      <span className="info-body-p">
-                        Dedicated 24/7 support
-                      </span>
-                    </div>
+                  <div className='info-body'>
+                    <span className='info-body-h'>Free Delivery</span>
+                    <span className='info-body-p'>
+                      For all orders over $120
+                    </span>
                   </div>
-                </Col>
-                <Col>
-                  <div className="info-card">
-                    <div className="info-logo">
-                      <img
-                        className="info-image"
-                        src={money}
-                        alt="save payment card"
-                      />
-                    </div>
-                    <div className="info-body">
-                      <span className="info-body-h">SAFE PAYMENT</span>
-                      <span className="info-body-p">100% secure payment</span>
-                    </div>
+                </div>
+              </Col>
+              <Col>
+                <div className='info-card'>
+                  <div className='info-logo'>
+                    <img
+                      className='info-image'
+                      src={person}
+                      alt='hepl person'
+                    />
                   </div>
-                </Col>
-              </Row>
-            </div>
-          </section>
-        </div>
-      )}
+                  <div className='info-body'>
+                    <span className='info-body-h'>24/7 HELP CENTER</span>
+                    <span className='info-body-p'>Dedicated 24/7 support</span>
+                  </div>
+                </div>
+              </Col>
+              <Col>
+                <div className='info-card'>
+                  <div className='info-logo'>
+                    <img
+                      className='info-image'
+                      src={money}
+                      alt='save payment card'
+                    />
+                  </div>
+                  <div className='info-body'>
+                    <span className='info-body-h'>SAFE PAYMENT</span>
+                    <span className='info-body-p'>100% secure payment</span>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          </div>
+        </section>
+      </div>
     </>
   );
 };

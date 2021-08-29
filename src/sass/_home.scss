@@ -26,7 +26,7 @@
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid $borderline;
-  margin-bottom: 1rem;
+  margin: 2rem 0;
   padding-bottom: 0.3em;
 
   .flash-title {
@@ -154,9 +154,11 @@ $layout-breakpoint-very-small: 900px;
   padding: 1rem;
   background-color: #fbfbfb;
   margin-top: 1rem;
+
   .info-card {
     display: flex;
     align-items: center;
+
     .info-logo {
       width: 4rem;
       height: 4rem;

@@ -1,24 +1,29 @@
-.product-details {
-  .product-details-images {
-    border: 1px solid;
-    .product-main-image {
-      width: 25rem;
-      height: 25rem;
-      border: 1px solid;
-    }
-    .thump-image {
-      border: 1px solid;
+.custom-col {
+  padding: 0 2rem !important;
+  .main-image-card {
+    height: 24rem;
+    .main-image {
+      width: 100%;
+      height: 100%;
     }
   }
-  .product-details-contains {
-    border: 1px solid;
-    .product-rating {
-      align-items: center;
-      display: flex;
-      .reviews {
-        padding: 0 1em;
+  .thump-image {
+    display: flex;
+    margin: 1.5rem 0;
+    justify-content: space-around;
+    .thump-image-card {
+      width: 6rem;
+      height: 6rem;
+      .thump-images {
+        width: 100%;
+        height: 100%;
       }
     }
+  }
+}
+
+.product-details {
+  .product-details-contains {
     .product-details-old-price {
       padding: 0.4rem 0 0.2rem;
       .cut-price {
@@ -34,11 +39,6 @@
       font-size: 1.8rem;
       padding: 0 0 0.3rem;
     }
-    .product-quantity {
-      padding: 0.5rem 0;
-      .product-quantity-box {
-      }
-    }
   }
 }
 .cut-price {
@@ -48,4 +48,46 @@
 .discount {
   color: rgb(250, 167, 14);
   padding: 0 0.5em;
+}
+.quantity {
+  font-weight: 600;
+  margin: 1rem 0;
+  .quantity-control {
+    width: 15rem;
+    border: 1px solid rgb(165, 161, 161);
+    display: flex;
+    justify-content: space-around;
+    padding: 0.8rem;
+    border-radius: 2rem;
+    font-size: 1.4rem;
+    margin: 1rem 0;
+  }
+}
+
+.btn-group {
+  display: flex;
+  margin: 1rem 0;
+  align-items: center;
+  .add-button {
+    width: 10rem;
+    border: 1px solid $secondaryColor;
+    background-color: $secondaryColor;
+    border-radius: 2rem;
+    color: white;
+    padding: 0.8rem;
+    align-items: center;
+    text-align: center;
+    margin-right: 1rem;
+    cursor: pointer;
+  }
+  .wish-button {
+    width: 10rem;
+    border: 1px solid $secondaryColor;
+    border-radius: 2rem;
+    color: $secondaryColor;
+    padding: 0.8rem;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+  }
 }

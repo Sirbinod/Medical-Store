@@ -1,14 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
-$lato: "Lato";
-$open-sans: "Roboto";
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Poppins:wght@300&display=swap");
+$open-sans: "Poppins", sans-serif;
+
+@import "variable";
 body {
   margin: 0;
-  font-family: $lato, $open-sans;
+  font-family: $open-sans !important;
   // font-family: ui-rounds;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f5f5f5 !important;
+  // background-color: #f5f5f5 !important;
 }
 
 code {
@@ -25,9 +25,10 @@ a {
 }
 .react-multiple-carousel__arrow {
   background: none !important;
+  z-index: 1 !important;
 }
 .react-multiple-carousel__arrow::before {
-  color: #666 !important;
+  color: rgb(8, 8, 8) !important;
 }
 .react-multiple-carousel__arrow--right {
   right: calc(0% + 0px) !important;
@@ -41,4 +42,10 @@ a {
 }
 .react-multi-carousel-list {
   padding-bottom: 1rem !important;
+}
+
+.breadcrumb-item {
+  a {
+    color: $primaryColor !important;
+  }
 }

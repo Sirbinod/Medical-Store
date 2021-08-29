@@ -1,64 +1,72 @@
 import React from "react";
-import {BiCart} from "react-icons/bi";
-import {RiDeleteBin6Line} from "react-icons/ri";
+import { BiCart } from "react-icons/bi";
 
-import {Link} from "react-router-dom";
+import { ImCross } from "react-icons/im";
+
+import { Link } from "react-router-dom";
 const View_wishList = () => {
-  const transactions = [
-    {
-      orderId:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFelP1jc1jHM8vMMZA5MB-nUjuX5BZYf25Mw&usqp=CAU",
-      billingName: "Neal Matthews",
-      Date: "07 Oct, 2019",
-      total: "$400",
-      badgeClass: "success",
-      paymentStatus: "Paid",
-    },
-    {
-      orderId:
-        "https://www.patanjaliayurved.net/assets/product_images/400x300/1548324100oats1kg400-300.png",
-      billingName: "Jamal Burnett",
-      Date: "07 Oct, 2019",
-      total: "$380",
-      badgeClass: "danger",
-      paymentStatus: "Chargeback",
-    },
-  ];
   return (
-    <div className="table-responsive">
-      <table className="table align-middle table-nowrap mb-0">
-        <thead className="table">
-          <tr>
-            <th className="align-middle text-center">Image</th>
-            <th className="align-middle text-center">Product Name</th>
-            <th className="align-middle text-center">Price</th>
-            <th className="align-middle text-center">Availability</th>
-            <th className="align-middle text-center">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {transactions.map((transaction, key) => (
-            <tr key={"_tr_" + key}>
-              <td className="text-center image_cell">
-                <img
-                  className="wish_list_image"
-                  src={transaction.orderId}
-                  alt={transaction.billingName}
-                />
-              </td>
-              <td className="text-center">{transaction.billingName}</td>
-              <td className="text-center">{transaction.Date}</td>
-              <td className="text-center">{transaction.total}</td>
+    <>
+      <div className='cart-main-area'>
+        <h3 className='cart-page-title'>Your cart items</h3>
+        <div className='row'>
+          <div className='col-12'>
+            <div className='table-content table-responsive cart-table-content'>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Product Name</th>
+                    <th>Unit Price</th>
 
-              <td className="text-center">
-                <BiCart className="action-icon" />
-                <RiDeleteBin6Line className="action-icon" />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+                    <th>Add To Cart</th>
+                    <th>action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className='product-thumbnail'>
+                      <Link>
+                        <img
+                          className='img-fluid'
+                          src='https://www.okdam.com/public/upload/product/extra/NIVEA-ALOE-YDRATION-BODY-LOTION-400-ML-5facd079cd119.jpg'
+                          alt=''
+                        />
+                      </Link>
+                    </td>
+                    <td className='product-name'>
+                      <Link>Nivea Aloe Hydration Body Lotion 400 Ml</Link>
+                    </td>
+                    <td className='product-price-cart'>
+                      <>
+                        <span className='amount old'>12</span>
+                        <span className='amount'>12</span>
+                      </>
+                    </td>
+
+                    <td className='product-subtotal'>
+                      <BiCart className='add-icon' />
+                    </td>
+
+                    <td className='product-remove'>
+                      <ImCross />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div className='row'>
+          <div className='col-lg-12'>
+            <div className='cart-shiping-update-wrapper'>
+              <div className='cart-shiping-update'>Continue Shopping</div>
+              <div className='cart-shiping-update'>Clear Shopping Cart</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 

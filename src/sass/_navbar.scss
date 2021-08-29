@@ -207,32 +207,20 @@ header {
   }
   // main navigatin scss
   .header-main {
-    background-color: $white;
-    height: 2.8rem;
+    background-color: rgb(247, 244, 244);
+    height: 2.5rem;
     .navbar {
       // background-color: #222;
       border-radius: 2px;
       padding: 0;
-      height: 2.8rem;
+      height: 2.5rem;
       .navbar-collapse {
         justify-content: space-between;
+        .nav-link{
+          padding: 0 1rem;
+        }
       }
-      .dropdown-menu li {
-        position: relative;
-      }
-      .dropdown-menu .dropdown-submenu {
-        display: none;
-        position: absolute;
-        left: 100%;
-        top: -7px;
-      }
-      .dropdown-menu .dropdown-submenu-left {
-        right: 100%;
-        left: auto;
-      }
-      .dropdown-menu > li:hover > .dropdown-submenu {
-        display: block;
-      }
+
       .small-form {
         display: none;
       }
@@ -293,6 +281,17 @@ header {
       }
       .nav-login {
         text-align: right;
+        .profile-dropdown{
+          background:none;
+          color: #4e4848 !important;
+          border: none !important;
+        }
+        .dropdown-menu{
+left: -69px ;
+        }
+        .profile-dropdown:focus{
+          box-shadow: none !important;
+        }
         .login-icon {
           margin-bottom: 0.2em;
         }
@@ -309,4 +308,121 @@ header {
       display: block;
     }
   }
+}
+
+.button-custom {
+  border: none;
+  background-color: green;
+  color: white;
+  height: 3.5rem;
+  border-radius: 0.1rem;
+  text-transform: uppercase;
+  font-size: 1rem;
+  .category-icon {
+    font-size: 1.7rem;
+    font-weight: bold;
+    margin: 0 0.4em;
+  }
+  .dropdown-toggle::after {
+    content: none;
+  }
+}
+
+.main-navigation{
+  padding-left: 0 !important;
+
+  list-style: none;
+  padding: 0.4rem;
+  margin: 0 !important;
+  
+
+
+ 
+
+  
+
+  li {
+    display: block;
+    position: relative;
+    float: left;
+    
+    
+   
+    span {
+      font-size: 1.1rem;
+      font-weight: 500;
+      padding: 0.36rem;
+      cursor: pointer;
+      .category-icon {
+        margin: 0 0.6rem 0 0.2rem;
+        font-size: 1.3rem;
+      }
+    }
+    ul {
+      display: none;
+      min-width: 11rem;
+      padding: 0.3rem 0 !important;
+      background-color: $white;
+      margin-top: 0.36rem;
+     
+    
+     
+
+      li {
+        a {
+          display: block;
+          text-decoration: none;
+          // white-space: nowrap;
+          color: rgb(56, 54, 54);
+          padding: 0.3rem 1rem;
+          width: 100%;
+
+        }
+      }
+    }
+  }
+}
+
+/* This hides the dropdowns */
+/* Display the dropdown */
+
+li:hover > ul {
+  display: block;
+  position: absolute;
+}
+
+li:hover li {
+  float: none;
+}
+
+li:hover a {
+  background: white;
+}
+
+li:hover li a:hover {
+  background: yellow;
+}
+
+.main-navigation li ul li {
+  border-top: 0;
+}
+
+/* Displays second level dropdowns to the right of the first level dropdown */
+
+ul
+ ul ul {
+  left: 100%;
+  top: 0;
+}
+
+/* Simple clearfix */
+
+// ul:before,
+// ul:after {
+//   content: " "; /* 1 */
+//   display: table; /* 2 */
+// }
+
+ul:after {
+  clear: both;
 }

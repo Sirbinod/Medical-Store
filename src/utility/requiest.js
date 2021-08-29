@@ -3,7 +3,6 @@ export const normalPost = (data, api) => {
   return axios.post(api, data);
 };
 export const normalGet = (api) => {
-  console.log(api, "what is here");
   return axios.get(api);
 };
 export const authGet = (api, token) => {
