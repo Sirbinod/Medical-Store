@@ -6,10 +6,12 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { Row, Col, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { cartDate } from "../../store/action/cartAction";
+import { cartDate, deleteCart } from "../../store/action/cartAction";
 import { productFetch } from "../../store/action/productAction";
+import { useToasts } from "react-toast-notifications";
 
 const CartRightSideBar = (props) => {
+  const { addToast } = useToasts();
   const [custCart, setCustCart] = useState();
   const { cart, loading } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.profile);
@@ -68,7 +70,11 @@ const CartRightSideBar = (props) => {
                     <span> $ 200</span>
                   </Col>
                   <Col md={2}>
-                    <RiDeleteBin6Line />
+                    <RiDeleteBin6Line
+                      onClick={() => {
+                        dispatch(deleteCart(user.token, cartProduct, addToast));
+                      }}
+                    />
                   </Col>
                 </Row>
               ))

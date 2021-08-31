@@ -21,24 +21,29 @@ export const cartFail = (data) => {
   };
 };
 // add to cart
-export const addToCart = (data) => {
+export const addToCart = (data, quantity, product) => {
   console.log(data);
   return {
     type: ADD_TO_CART,
-    payload: { data },
+    payload: { data, quantity, product },
   };
 };
 
-export const addCart = (id, token, addToast) => async (dispatch) => {
-  if (addToast) {
-    addToast("Added To Cart", { appearance: "success", autoDismiss: true });
-  }
-  console.log(id, "cart Id hrereer");
-  const data = { productId: id, quantity: "1" };
-  dispatch(cartStart());
+export const addCart = (_id, token, addToast) => async (dispatch) => {
+  console.log(_id, "cart Id hrereer");
+  const data = { productId: _id, quantity: "1" };
+  // dispatch(cartStart());
   try {
     const res = await authPost(cartapi, data, token);
-    dispatch(addToCart(res.data));
+    // dispatch(addToCart(res.data, 1, product));
+    dispatch(cartDate(token));
+    if (addToast) {
+      addToast("Added To Cart", {
+        appearance: "success",
+        autoDismiss: true,
+        location: "topleft",
+      });
+    }
   } catch (error) {
     dispatch(cartFail(error));
   }
@@ -91,8 +96,17 @@ export const deleteFromCart = (data) => {
   };
 };
 
-export const deleteCart = (token, id) => async (dispatch) => {
+export const deleteCart = (token, data, addToast) => async (dispatch) => {
   try {
-    const res = await authDelete(cartDeleteapi(id), token);
-  } catch (error) {}
+    const res = await authDelete(cartDeleteapi(data.product._id, true), token);
+    dispatch(deleteFromCart(data));
+    if (addToast) {
+      addToast("Item Delete From Cart", {
+        appearance: "warning",
+        autoDismiss: true,
+      });
+    }
+  } catch (error) {
+    dispatch(cartFail(error));
+  }
 };

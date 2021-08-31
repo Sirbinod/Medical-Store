@@ -30,7 +30,7 @@ export const categoryFetch = () => async (dispatch) => {
   dispatch(categoryFetchStart());
   try {
     const res = await normalGet(categoryapi);
-    dispatch(categoryFetchSuccess(res.data));
+    dispatch(categoryFetchSuccess(res.data.data));
   } catch (error) {
     dispatch(categoryFetchFail(error));
   }

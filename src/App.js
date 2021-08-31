@@ -20,7 +20,7 @@ import Signup from "./screen/auth/signup";
 function App() {
   return (
     <>
-      <ToastProvider placement='bottom-left'>
+      <ToastProvider placement='top-left'>
         <NavigationBar />
         <Login />
         <Signup />

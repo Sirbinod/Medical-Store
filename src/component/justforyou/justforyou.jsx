@@ -24,7 +24,7 @@ const Justforyou = (data) => {
   return (
     <div className='product-grid'>
       <div className='product-image'>
-        <a href='#' className='image_wrap'>
+        <a href={`/product_details/${data.data._id}`} className='image_wrap'>
           <img
             className='image'
             src={`http://pharmamanduapi.lightwebgroup.com${data.data.image.path}`}
@@ -37,11 +37,11 @@ const Justforyou = (data) => {
         )}
 
         <ul className='product-links'>
-          <li>
+          {/* <li>
             <a href='#' data-tip='Add to Wishlist'>
               <MdFavoriteBorder className='icon' />
             </a>
-          </li>
+          </li> */}
 
           <li>
             <a
@@ -71,9 +71,10 @@ const Justforyou = (data) => {
             <AiFillStar style={{color: "#f57224"}} />
             <AiFillStar style={{color: "#f57224"}} />
           </ul> */}
-        <h3 className='title'>{data.data.chemicalName}</h3>
+        <h3 className='title'>{data.data.name}</h3>
         <div className='price'>
-          <span>$0.00</span> {data.data.cost}
+          {/* <span>$0.00</span> */}
+          {data.data.cost}
         </div>
         {/* <a className="add-to-cart" href="#">
           add to cart

@@ -13,13 +13,15 @@ import { addCart } from "../../store/action/cartAction";
 import { useToasts } from "react-toast-notifications";
 import { normalGet } from "../../utility/requiest";
 import { productDetailapi } from "../../utility/api";
+import { categoryFetch } from "../../store/action/categoryAction";
 
 const Product_details = (props) => {
   const { addToast } = useToasts();
   const { user, isLoggedIn } = useSelector((state) => state.profile);
-
+  const { category } = useSelector((state) => state.category);
   const { product } = useSelector((state) => state.product);
   const dispatch = useDispatch();
+
   const [modelState, setmodelState] = useState({
     loading: false,
     error: null,
@@ -59,19 +61,20 @@ const Product_details = (props) => {
   useEffect(() => {
     fetchDetails();
     dispatch(productFetch());
+    dispatch(categoryFetch());
   }, [dispatch]);
 
-  let suggested = [];
-  if (!modelState.loading) {
-    suggested = product.filter(
-      (listData) =>
-        listData.category._id === modelState.productDetails.category._id,
-    );
+  let filterCat;
+  if (category.data) {
+    filterCat = category.filter((x) => x._id === props.match.params.id);
   }
-  console.log(suggested);
-
-  // if (modelState.productDetails && product && !suggested)
-  //   console.log("I am in");
+  // let suggested = [];
+  // if (!modelState.loading) {
+  //   suggested = product.filter(
+  //     (listData) =>
+  //       listData.category._id === modelState.productDetails.category._id,
+  //   );
+  // }
 
   const responsive = {
     superLargeDesktop: {
@@ -107,20 +110,36 @@ const Product_details = (props) => {
               <div class='col-md-6 mb-4 mb-md-0 custom-col'>
                 <ProductImage image={modelState.productDetails.image} />
               </div>
-              <div class='col-md-6'>
-                <h4>{modelState.productDetails.chemicalName}</h4>
+              <div class='col-md-6' style={{ padding: "0 2.4rem" }}>
+                <h4>{modelState.productDetails.name}</h4>
                 <p class='mb-2 text-muted text-uppercase small'>
-                  {modelState.productDetails.companyName}
+                  {modelState.productDetails.chemicalName}
                 </p>
-                {modelState.productDetails.discount == 0}
-
-                <div className='product-details-old-price'>
-                  <span className='cut-price'>$300</span>
-                  <span className='discount'>33% off</span>
-                </div>
+                {modelState.productDetails.discount == 0 ? (
+                  <></>
+                ) : (
+                  <div className='product-details-old-price'>
+                    {/* <span className='cut-price'>$300</span> */}
+                    <span className='discount'>
+                      {modelState.productDetails.discount}
+                    </span>
+                  </div>
+                )}
 
                 <p className='mt-3'>
-                  <strong>$12.99</strong>
+                  <strong
+                    style={{
+                      fontWeight: "700",
+                      fontSize: "1.4rem",
+                      color: "#ffb50d",
+                    }}>
+                    Rs.
+                    {modelState.productDetails.cost}
+                  </strong>
+                </p>
+                <p className='mt-3'>
+                  <span style={{ fontWeight: "600" }}>Company Name: </span>
+                  {modelState.productDetails.companyName}
                 </p>
                 <div className='product-description'>
                   <h5 className='product-description-tit'>Ingredient</h5>
@@ -132,14 +151,14 @@ const Product_details = (props) => {
                 </div>
 
                 <hr />
-                <div className='quantity'>
+                {/* <div className='quantity'>
                   <span>Qauntity</span>
                   <div className='quantity-control'>
                     <span>-</span>
                     <span>0</span>
                     <span>+</span>
                   </div>
-                </div>
+                </div> */}
                 <div className='btn-group'>
                   <div
                     className='add-button'
@@ -154,7 +173,7 @@ const Product_details = (props) => {
                     }>
                     Add To Card
                   </div>
-                  <div className='wish-button'>Add Wishlist</div>
+                  {/* <div className='wish-button'>Add Wishlist</div> */}
                 </div>
               </div>
             </div>
@@ -165,7 +184,7 @@ const Product_details = (props) => {
               <h3 className='most-popular-title'>Latest product</h3>
             </div>
             <Carousel responsive={responsive}>
-              {suggested && suggested.map((data) => <Justforyou data={data} />)}
+              {product && product.map((data) => <Justforyou data={data} />)}
             </Carousel>
           </div>
         </div>

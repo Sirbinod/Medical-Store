@@ -26,13 +26,28 @@ const cartReducer = (state = initState, action) => {
         loading: true,
       };
     case ADD_TO_CART:
-      const cartItem = cartItem.filter(
-        (item) => item.data.products_id === items.data.products._id,
+      const { product, data, quantity } = action.payload;
+      const prevcarts = state.cart.products;
+
+      const filteredProduct = prevcarts.filter(
+        (x) => x.product._id === product._id,
+      );
+      if (filteredProduct.length > 0) {
+        // find index of filtered product
+        // prevcarts.index
+        // update proce of filtered product
+        // filteredProduct.
+      } else {
+        prevcarts.push(data.data);
+      }
+
+      const cartItem = cartItem.products.filter(
+        (item) => item.products_id === items.data.products._id,
       );
       if (cartItem === undefined) {
         return {
           ...state,
-          quantity: state.quantity ? state.quantity : 1,
+          quantity: state.quantity ? state.quantity : action.quantity,
           loading: false,
           success: true,
         };
@@ -72,12 +87,24 @@ const cartReducer = (state = initState, action) => {
             : state,
         );
       }
-    // case DELETE_FROM_CART:
-    //   const remainingItems = (cartItem, product) =>
-    //     cartItems.filter(
-    //       (cartItem) => cartItem.cartItemId !== product.cartItemId,
-    //     );
-    //   return remainingItems(cartItems, product);
+    case DELETE_FROM_CART:
+      const { products } = action.payload;
+           const prevcart = state.cart.products;
+
+           const filteredRemove = prevcart.filter(
+             (x) => x.product._id !== products.product._id,
+           );
+       if (filteredRemove.length > 0) {
+       } else {
+         prevcart.push(filteredRemove);
+       }
+      
+      return {
+        ...state,
+        loading: false,
+        success: true,
+        quantity: state.quantity-products.quantity,
+      };
 
     default:
       return state;

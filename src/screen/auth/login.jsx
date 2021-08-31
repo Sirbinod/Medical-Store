@@ -101,7 +101,7 @@ const Login = (props, show) => {
               <h3 className='login'>Login</h3>
               <form className='forms-sample' onSubmit={handleSubmit(onSubmit)}>
                 {/* <Field name='asdas'   /> */}
-                <Form.Group>
+                <Form.Group className='group-form'>
                   <label htmlFor='email'>Email address</label>
                   <Field
                     name='email'
@@ -112,7 +112,7 @@ const Login = (props, show) => {
                   />
                 </Form.Group>
 
-                <Form.Group>
+                <Form.Group className='group-form'>
                   <label htmlFor='password'>Password</label>
 
                   <Field
@@ -124,7 +124,7 @@ const Login = (props, show) => {
                   />
                 </Form.Group>
 
-                <Form.Group>
+                <Form.Group className='group-form'>
                   <div className='form-check'>
                     <label className='form-check-label text-muted'>
                       <input

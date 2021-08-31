@@ -19,7 +19,17 @@ const validate = (values) => {
   } else if (values.npassword === values.password) {
     errors.npassword = "Old Password and New Password same";
   }
-
+  if (!values.fname) {
+    errors.email = "First Name field shouldn’t be empty";
+  }
+  if (!values.lname) {
+    errors.email = "Last Name field shouldn’t be empty";
+  }
+  if (!values.phone) {
+    errors.email = "phone Number field shouldn’t be empty";
+  } else if (values.password.length == 10) {
+    errors.password = "The phone Number should be 10 ";
+  }
   return errors;
 };
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Form, Navbar, Nav, Dropdown } from "react-bootstrap";
+import { Button, Form, Navbar, Nav, Dropdown, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BiSearch } from "react-icons/bi";
 import { BiCart } from "react-icons/bi";
@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { categoryFetch } from "../../store/action/categoryAction";
 import { loginOpen } from "../../store/action/profileAction";
 import { cartDate } from "../../store/action/cartAction";
-
+import { FaFileUpload } from "react-icons/fa";
 const NavigationBar = (props) => {
   const { category, loading } = useSelector((state) => state.category);
   const dispatch = useDispatch();
@@ -54,7 +54,7 @@ const NavigationBar = (props) => {
               </Button>
             </Form>
             <div className='group-cart'>
-              <div className='icons'>
+              {/* <div className='icons'>
                 <span className='count-cart'>0</span>
 
                 <MdFavoriteBorder
@@ -65,7 +65,7 @@ const NavigationBar = (props) => {
                   }}
                   className='icon'
                 />
-              </div>
+              </div> */}
               <div className='icons'>
                 <span className='count-cart'>
                   {cart.data && cart.data.totalQuantity}
@@ -81,8 +81,9 @@ const NavigationBar = (props) => {
               </div>
 
               <div className='price-cart'>
-                <span className='price-title'>My Cart</span>
-                <span className='price'>$0.00</span>
+                <FaFileUpload className='upload-icon' />
+
+                <span>Upload Prescription</span>
               </div>
             </div>
           </div>
@@ -93,21 +94,24 @@ const NavigationBar = (props) => {
       {/* main nav  */}
       <div className='header-main'>
         <div className='container'>
-          <Navbar expand='lg' className='navbar'>
-            <Navbar.Toggle aria-controls='basic-navbar-nav' />
-            <Navbar.Collapse id='basic-navbar-nav'>
-              <ul class='main-navigation'>
-                <li>
-                  <span>
-                    <BsList className='category-icon' />
-                    All Category
-                  </span>
-                  <ul>
-                    {category.data &&
-                      category.data.map((catData) => (
-                        <li>
-                          <a href={`/filter/${catData._id}`}>{catData.name}</a>
-                          {/* <ul>
+          <div className='m-bar'>
+            <Navbar expand='lg' className='navbar'>
+              <Navbar.Toggle aria-controls='basic-navbar-nav' />
+              <Navbar.Collapse id='basic-navbar-nav'>
+                <ul class='main-navigation'>
+                  <li>
+                    <span>
+                      <BsList className='category-icon' />
+                      All Category
+                    </span>
+                    <ul>
+                      {category.data &&
+                        category.data.map((catData) => (
+                          <li>
+                            <a href={`/filter/${catData._id}`}>
+                              {catData.name}
+                            </a>
+                            {/* <ul>
                             <li>
                               <a href='/filter'>BP Monitors</a>
                             </li>
@@ -118,50 +122,58 @@ const NavigationBar = (props) => {
                               <a href='/filter'>Health Care</a>
                             </li>
                           </ul> */}
-                        </li>
-                      ))}
-                  </ul>
-                </li>
-              </ul>
-              <Nav>
-                <Nav.Link href='/about'>About</Nav.Link>
-                <Nav.Link href='/blog'>Blog</Nav.Link>
+                          </li>
+                        ))}
+                    </ul>
+                  </li>
+                </ul>
+                <Nav>
+                  <Nav.Link href='/about'>About</Nav.Link>
+                  <Nav.Link href='/blog'>Blog</Nav.Link>
 
-                <Nav.Link href='/contact'>Contact</Nav.Link>
-              </Nav>
-              <Nav className='nav-login'>
-                {isLoggedIn ? (
-                  <Dropdown>
-                    <Dropdown.Toggle
-                      className='profile-dropdown'
-                      id='dropdown-basic'>
-                      <BsPersonFill className='login-icon' /> Profile
-                    </Dropdown.Toggle>
+                  <Nav.Link href='/contact'>Contact</Nav.Link>
+                </Nav>
+                <Nav className='nav-login'>
+                  {isLoggedIn ? (
+                    <Dropdown>
+                      <Dropdown.Toggle
+                        className='profile-dropdown'
+                        id='dropdown-basic'>
+                        <BsPersonFill className='login-icon' /> Profile
+                      </Dropdown.Toggle>
 
-                    <Dropdown.Menu>
-                      <Dropdown.Item href='#/action-2'>Proffile</Dropdown.Item>
-                      <Dropdown.Item href='/logout'>Logout</Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                ) : (
-                  <Nav.Link onClick={() => dispatch(loginOpen())}>
-                    <BsPersonFill className='login-icon' />
-                    Login
-                  </Nav.Link>
-                )}
-              </Nav>
-            </Navbar.Collapse>
-            <Form className='small-form'>
-              <input
-                className='form-control small-d-control'
-                type='search'
-                placeholder='Search for products...'
-                aria-label='Search'></input>
-              <Button className='search-btn small-d-search' type='submit'>
-                <BiSearch />
-              </Button>
-            </Form>
-          </Navbar>
+                      <Dropdown.Menu>
+                        <Dropdown.Item href='#/action-2'>
+                          Proffile
+                        </Dropdown.Item>
+                        <Dropdown.Item href='/logout'>Logout</Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  ) : (
+                    <Nav.Link onClick={() => dispatch(loginOpen())}>
+                      <BsPersonFill className='login-icon' />
+                      Login
+                    </Nav.Link>
+                  )}
+                </Nav>
+              </Navbar.Collapse>
+            </Navbar>
+            <Row>
+              <Col>
+                {" "}
+                <Form className='small-form'>
+                  <input
+                    className='form-control small-d-control'
+                    type='search'
+                    placeholder='Search for products...'
+                    aria-label='Search'></input>
+                  <Button className='search-btn small-d-search' type='submit'>
+                    <BiSearch />
+                  </Button>
+                </Form>
+              </Col>
+            </Row>
+          </div>
         </div>
       </div>
 

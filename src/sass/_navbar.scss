@@ -70,7 +70,7 @@ header {
       }
       .group-cart {
         display: flex;
-        width: 9rem;
+        width: 15rem;
         justify-content: space-between;
         align-items: center;
         color: $white;
@@ -84,8 +84,8 @@ header {
             font-size: 0.65rem;
             line-height: 2.1;
             position: absolute;
-            top: -0.5rem;
-            right: -0.4rem;
+            top: -0.3rem;
+            right: -0.3rem;
             display: inline-block;
             width: 1.2rem;
             height: 1.2rem;
@@ -189,18 +189,20 @@ header {
         }
 
         .price-cart {
-          padding: 0 0.2em 0 0;
           text-align: center;
-          .price-title {
-            display: block;
-            color: #666;
-            font-size: 0.8rem;
-          }
-          .price {
-            font-size: 0.9rem;
-            font-weight: bold;
-            color: rgb(250, 243, 243);
-          }
+    border: 1px solid;
+    border-radius: 0.3rem;
+    padding: 0.5rem;
+    background-color: white;
+    color:$primaryColor;
+    cursor: pointer;
+    .upload-icon{
+      font-size: 1.3rem;
+      margin-right: 0.2rem;
+    }
+    span{
+      font-weight: 700;
+    }
         }
       }
     }
@@ -209,6 +211,30 @@ header {
   .header-main {
     background-color: rgb(247, 244, 244);
     height: 2.5rem;
+      .small-form {
+        display: none;
+      }
+      $layout-breakpoint-very-small: 970px;
+
+      @media (max-width: $layout-breakpoint-very-small) {
+        .small-form {
+          display: flex;
+          margin-left:2em;
+
+          .small-d-control {
+            padding: 0.3em;
+            width: 100%;
+
+            border-top-right-radius: calc(0rem - 0px);
+            border-bottom-right-radius: calc(0rem - 0px);
+          }
+
+          .small-d-search {
+            border-top-left-radius: calc(0rem - 0px);
+            border-bottom-left-radius: calc(0rem - 0px);
+          }
+        }
+      }
     .navbar {
       // background-color: #222;
       border-radius: 2px;
@@ -221,29 +247,7 @@ header {
         }
       }
 
-      .small-form {
-        display: none;
-      }
-      $layout-breakpoint-very-small: 970px;
-
-      @media (max-width: $layout-breakpoint-very-small) {
-        .small-form {
-          display: flex;
-          margin-right: 1em;
-          .small-d-control {
-            padding: 0.3em;
-            min-width: 17rem;
-
-            border-top-right-radius: calc(0rem - 0px);
-            border-bottom-right-radius: calc(0rem - 0px);
-          }
-
-          .small-d-search {
-            border-top-left-radius: calc(0rem - 0px);
-            border-bottom-left-radius: calc(0rem - 0px);
-          }
-        }
-      }
+    
       .banner-section {
         margin: 0.7em 0;
       }
@@ -298,12 +302,35 @@ left: -69px ;
       }
     }
   }
+
+
   $layout-breakpoint-very-small: 970px;
 
   @media (max-width: $layout-breakpoint-very-small) {
+    .m-bar{
+      display: flex;
+    }
+.navbar{
+  width: 3rem;
+}
     .navbar-light .navbar-toggler-icon {
       background-color: $white;
+    
+      .nav-login{
+          text-align: left;
+        }
+
     }
+      .navbar-collapse {
+        display: block;
+        background-color: white !important;
+        .navbar-nav {
+          width: 20rem;
+          padding: 1rem 0;
+        }
+       
+      }
+     
     .small-form {
       display: block;
     }
@@ -363,6 +390,7 @@ left: -69px ;
       min-width: 11rem;
       padding: 0.3rem 0 !important;
       background-color: $white;
+      border: 1px solid rgb(228, 226, 226);
       margin-top: 0.36rem;
      
     
@@ -426,3 +454,5 @@ ul
 ul:after {
   clear: both;
 }
+
+

@@ -14,7 +14,7 @@ const ProductImage = (data) => {
           alt=''
         />
       </Card>
-      <div className='thump-image'>
+      {/* <div className='thump-image'>
         <Card className='thump-image-card'>
           <img
             classname='thump-images'
@@ -44,6 +44,7 @@ const ProductImage = (data) => {
           />
         </Card>
       </div>
+    */}
     </>
   );
 };

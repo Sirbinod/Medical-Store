@@ -279,6 +279,19 @@
       }
     }
   }
+  .add-button{
+      width: 8rem;
+    border: 1px solid $secondaryColor;
+    background-color: $secondaryColor;
+    border-radius: 0.5rem;
+    color: white;
+    padding: 0.4rem;
+    align-items: center;
+    text-align: center;
+    margin-right: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+  }
   .title {
     font-size: 1.2rem;
     font-weight: 700;

@@ -7,17 +7,19 @@ import {AiFillStar} from "react-icons/ai";
 import List_view from "../../component/product_card/list_view";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import Carousel from "react-multi-carousel";
+import Paginator from "react-hooks-paginator";
 import "react-multi-carousel/lib/styles.css";
 import { productFetch } from "../../store/action/productAction";
+
 const Filter_page = (props) => {
   const [filterData, setFilterData] = useState();
+  const [offset, setOffset] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentData, setCurrentData] = useState([]);
 
   console.log(props, "filter page here");
   const dispatch = useDispatch();
   const { product, loading } = useSelector((state) => state.product);
-  useEffect(() => {
-    dispatch(productFetch());
-  }, [dispatch]);
   let firstFilterData;
 
   if (product) {
@@ -26,14 +28,16 @@ const Filter_page = (props) => {
       product.filter(
         (productFilter) => productFilter.category._id === props.match.params.id,
       );
-    console.log(firstFilterData, "wath if here not found");
-    !filterData && setFilterData(firstFilterData);
   }
+  useEffect(() => {
+    dispatch(productFetch());
+    setFilterData(firstFilterData);
+  }, [dispatch]);
 
   const showPrescription = () => {
     const prescription =
-      product.data &&
-      product.data.docs.filter(
+      product &&
+      product.filter(
         (productFilter) => productFilter.needPrescription === true,
       );
     setFilterData(prescription);
@@ -41,8 +45,8 @@ const Filter_page = (props) => {
 
   const showNonPrescription = () => {
     const nonPrescription =
-      product.data &&
-      product.data.docs.filter(
+      product &&
+      product.filter(
         (productFilter) => productFilter.needPrescription === false,
       );
     setFilterData(nonPrescription);
@@ -71,7 +75,7 @@ const Filter_page = (props) => {
       items: 2,
     },
   };
-
+  const pageLimit = 4;
   const [isGrid, setIsGrid] = useState(true);
   const isGridView = () => {
     setIsGrid(true);
@@ -79,6 +83,8 @@ const Filter_page = (props) => {
   const isListView = () => {
     setIsGrid(false);
   };
+
+  console.log(filterData, "filter data");
 
   return (
     <>
@@ -217,8 +223,8 @@ const Filter_page = (props) => {
                   <Row>
                     {loading ? (
                       <>loading..</>
-                    ) : product.data ? (
-                      product.data.docs.map((listData) => (
+                    ) : filterData ? (
+                      filterData.map((listData) => (
                         <div className='mb-4'>
                           <List_view data={listData} />
                         </div>
@@ -229,6 +235,7 @@ const Filter_page = (props) => {
                   </Row>
                 )}
               </div>
+              {/* shop product pagination */}
             </Col>
           </Row>
           <div className='my-5'>

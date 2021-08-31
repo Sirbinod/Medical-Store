@@ -145,14 +145,14 @@ const Home = () => {
               <div className='flash-title'>
                 <h3>Most Discount</h3>
               </div>
-              <Button
+              {/* <Button
                 style={{
                   color: "white",
                   backgroundColor: "#269b9b",
                   borderColor: "#269b9b",
                 }}>
                 More
-              </Button>
+              </Button> */}
             </div>
             {loading ? (
               <>loading ... </>
@@ -201,14 +201,14 @@ const Home = () => {
           <div className='container'>
             <div className='most-popular'>
               <h3 className='most-popular-title'>Most Popular</h3>
-              <Button
+              {/* <Button
                 style={{
                   color: "white",
                   backgroundColor: "#269b9b",
                   borderColor: "#269b9b",
                 }}>
                 More
-              </Button>
+              </Button> */}
             </div>
 
             {loading ? (
@@ -266,25 +266,23 @@ const Home = () => {
           <div className='container'>
             <div className='just-for-you'>
               <h3 className='grid-title'>Just For You</h3>
-              <Button
+              {/* <Button
                 style={{
                   color: "white",
                   backgroundColor: "#269b9b",
                   borderColor: "#269b9b",
                 }}>
                 More
-              </Button>
+              </Button> */}
             </div>
             {loading ? (
               <> Loading.... </>
             ) : latestProduct.data ? (
-              <Row>
+              <Carousel responsive={responsive}>
                 {latestProduct.data.map((latestData) => (
-                  <Col className='grid-col'>
-                    <Justforyou data={latestData} />
-                  </Col>
+                  <Justforyou data={latestData} />
                 ))}
-              </Row>
+              </Carousel>
             ) : (
               <></>
             )}
