@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/Pharmamandu/static/css/main.fdd0d48c.chunk.css",
+    "main.js": "/Pharmamandu/static/js/main.1ae1134e.chunk.js",
+    "main.js.map": "/Pharmamandu/static/js/main.1ae1134e.chunk.js.map",
+    "runtime-main.js": "/Pharmamandu/static/js/runtime-main.2ccbf31a.js",
+    "runtime-main.js.map": "/Pharmamandu/static/js/runtime-main.2ccbf31a.js.map",
+    "static/css/2.62cc0d80.chunk.css": "/Pharmamandu/static/css/2.62cc0d80.chunk.css",
+    "static/js/2.823f5d8a.chunk.js": "/Pharmamandu/static/js/2.823f5d8a.chunk.js",
+    "static/js/2.823f5d8a.chunk.js.map": "/Pharmamandu/static/js/2.823f5d8a.chunk.js.map",
+    "static/js/3.809e9b19.chunk.js": "/Pharmamandu/static/js/3.809e9b19.chunk.js",
+    "static/js/3.809e9b19.chunk.js.map": "/Pharmamandu/static/js/3.809e9b19.chunk.js.map",
+    "index.html": "/Pharmamandu/index.html",
+    "static/css/2.62cc0d80.chunk.css.map": "/Pharmamandu/static/css/2.62cc0d80.chunk.css.map",
+    "static/css/main.fdd0d48c.chunk.css.map": "/Pharmamandu/static/css/main.fdd0d48c.chunk.css.map",
+    "static/js/2.823f5d8a.chunk.js.LICENSE.txt": "/Pharmamandu/static/js/2.823f5d8a.chunk.js.LICENSE.txt",
+    "static/media/credit-card 1.1d45b753.svg": "/Pharmamandu/static/media/credit-card 1.1d45b753.svg",
+    "static/media/customer-support 1.b34d54ae.svg": "/Pharmamandu/static/media/customer-support 1.b34d54ae.svg",
+    "static/media/styles.css": "/Pharmamandu/static/media/revicons.e8746a62.woff",
+    "static/media/shipping-truck 1.d98b4d99.svg": "/Pharmamandu/static/media/shipping-truck 1.d98b4d99.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2ccbf31a.js",
+    "static/css/2.62cc0d80.chunk.css",
+    "static/js/2.823f5d8a.chunk.js",
+    "static/css/main.fdd0d48c.chunk.css",
+    "static/js/main.1ae1134e.chunk.js"
+  ]
+}
