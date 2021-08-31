@@ -17,10 +17,6 @@ export const latestProductapi = `${baseurl}/products/latest`;
 // cart
 export const cartapi = `${baseurl}/carts`;
 export const cartDeleteapi = (id, data) => {
-  console.log("================================");
-  console.log(id, data, "api data hatetetetetet");
-  console.log("================================");
-
   return `${baseurl}/carts?productId=${id}&all=${data}`;
 };
 

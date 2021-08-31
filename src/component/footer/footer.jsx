@@ -2,6 +2,7 @@ import React from "react";
 import {Row, Col, Form, Button} from "react-bootstrap";
 import {FaGooglePlay} from "react-icons/fa";
 import {AiFillApple} from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -31,9 +32,15 @@ const Footer = () => {
             <div className='footer-contain'>
               <h5 footer-contain-heading>Company Link</h5>
               <ul className='ul-list'>
-                <li className='li-list'>About Us</li>
-                <li className='li-list'>Blog</li>
-                <li className='li-list'>Contact</li>
+                <Link to='/about'>
+                  <li className='li-list'>About Us</li>
+                </Link>
+                <Link to='/blog'>
+                  <li className='li-list'>Blog</li>
+                </Link>
+                <Link to='/contact'>
+                  <li className='li-list'>Contact</li>
+                </Link>
               </ul>
             </div>
           </Col>

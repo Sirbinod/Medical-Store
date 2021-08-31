@@ -12,12 +12,8 @@ import "react-multi-carousel/lib/styles.css";
 import { productFetch } from "../../store/action/productAction";
 
 const Filter_page = (props) => {
-  const [filterData, setFilterData] = useState();
-  const [offset, setOffset] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [currentData, setCurrentData] = useState([]);
+  //  const [checked, setChecked] = useState(true);
 
-  console.log(props, "filter page here");
   const dispatch = useDispatch();
   const { product, loading } = useSelector((state) => state.product);
   let firstFilterData;
@@ -29,33 +25,29 @@ const Filter_page = (props) => {
         (productFilter) => productFilter.category._id === props.match.params.id,
       );
   }
+  console.log(firstFilterData, " firstData filter herer");
+  const [filterData, setFilterData] = useState(firstFilterData);
+
   useEffect(() => {
     dispatch(productFetch());
-    setFilterData(firstFilterData);
   }, [dispatch]);
 
-  const showPrescription = () => {
-    const prescription =
-      product &&
-      product.filter(
-        (productFilter) => productFilter.needPrescription === true,
-      );
-    setFilterData(prescription);
-  };
+  //  const showPrescription = () => {
+  //    const prescription =
+  //      product &&
+  //      product.filter((productFilter) => productFilter.needPrescription === true);
+  //    setFilterData(prescription);
+  //  };
 
-  const showNonPrescription = () => {
-    const nonPrescription =
-      product &&
-      product.filter(
-        (productFilter) => productFilter.needPrescription === false,
-      );
-    setFilterData(nonPrescription);
-  };
+  //  const showNonPrescription = () => {
+  //    const nonPrescription =
+  //      product &&
+  //      product.filter(
+  //        (productFilter) => productFilter.needPrescription === false,
+  //      );
+  //    setFilterData(nonPrescription);
+  //  };
 
-  console.log(
-    filterData,
-    "filetr datatatatatatatattataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-  );
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -90,12 +82,12 @@ const Filter_page = (props) => {
     <>
       <div className='filter_page'>
         <div className='container'>
-          <Breadcrumb className='mt-3'>
+          {/* <Breadcrumb className='mt-3'>
             <Breadcrumb.Item href='#'>Home</Breadcrumb.Item>
             <Breadcrumb.Item href=''>Health Care</Breadcrumb.Item>
             <Breadcrumb.Item active>Data</Breadcrumb.Item>
-          </Breadcrumb>
-          <Row className='filter'>
+          </Breadcrumb> */}
+          <Row className='filter mt-4'>
             <Col xl={3} className='filter_left'>
               <div className='filter_heading'>
                 <span>Filter By</span>
@@ -109,7 +101,7 @@ const Filter_page = (props) => {
                         <label className='form-check-label text-muted'>
                           <input
                             type='checkbox'
-                            onChange={showPrescription}
+                            // onChange={showPrescription}
                             className='form-check-input'
                           />
                           Prescriptions
@@ -121,7 +113,7 @@ const Filter_page = (props) => {
                         <label className='form-check-label text-muted'>
                           <input
                             type='checkbox'
-                            onChange={showNonPrescription}
+                            // onChange={showNonPrescription}
                             className='form-check-input'
                           />
                           Non-Prescriptions
@@ -193,7 +185,7 @@ const Filter_page = (props) => {
                     />
                   </div>
                 </Col>
-                <Col className='col-6'>
+                {/* <Col className='col-6'>
                   <div className='sortby'>
                     <span className='sortby-w'>Sort By:</span>
                     <Form.Select aria-label='Default select example'>
@@ -203,7 +195,7 @@ const Filter_page = (props) => {
                       <option value='3'>Three</option>
                     </Form.Select>
                   </div>
-                </Col>
+                </Col> */}
               </div>
               <div className='filter_products'>
                 {isGrid ? (
@@ -211,8 +203,8 @@ const Filter_page = (props) => {
                     {loading ? (
                       <>loading..</>
                     ) : (
-                      filterData &&
-                      filterData.map((data) => (
+                      firstFilterData &&
+                      firstFilterData.map((data) => (
                         <Col xl={3} className='mb-4'>
                           <Justforyou data={data} />
                         </Col>
@@ -223,8 +215,8 @@ const Filter_page = (props) => {
                   <Row>
                     {loading ? (
                       <>loading..</>
-                    ) : filterData ? (
-                      filterData.map((listData) => (
+                    ) : firstFilterData ? (
+                      firstFilterData.map((listData) => (
                         <div className='mb-4'>
                           <List_view data={listData} />
                         </div>

@@ -133,7 +133,7 @@ const Signup = (props, show) => {
                 <Form.Group className='group-form'>
                   <label htmlFor='email'>Email address</label>
                   <Field
-                    name='email'
+                    name='semail'
                     type='email'
                     className='form-control'
                     component={renderField}
@@ -145,7 +145,7 @@ const Signup = (props, show) => {
                   <label htmlFor='password'>Password</label>
 
                   <Field
-                    name='password'
+                    name='spassword'
                     type={isPWShown ? "text" : "password"}
                     className='form-control'
                     component={renderField}

@@ -79,8 +79,12 @@ const Add_Cart = () => {
         <div className='row'>
           <div className='col-lg-12'>
             <div className='cart-shiping-update-wrapper'>
-              <div className='cart-shiping-update'>Continue Shopping</div>
-              <div className='cart-shiping-update'>Clear Shopping Cart</div>
+              <Link to='/'>
+                <div className='cart-shiping-update'>Continue Shopping</div>
+              </Link>
+              <Link to='/checkout'>
+                <div className='cart-shiping-update'>Checkout</div>
+              </Link>
             </div>
           </div>
         </div>

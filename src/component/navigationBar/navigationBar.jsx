@@ -18,20 +18,15 @@ const NavigationBar = (props) => {
   const { category, loading } = useSelector((state) => state.category);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(categoryFetch());
-  }, dispatch);
-
-  console.log(category, "category here");
-
-  const [show, setShow] = useState(false);
 
   const { cart } = useSelector((state) => state.cart);
   const { user, isLoggedIn } = useSelector((state) => state.profile);
 
   useEffect(() => {
     dispatch(cartDate(user && user.token));
+    dispatch(categoryFetch());
   }, dispatch);
+
   return (
     <header>
       {/* top navigationbar */}
@@ -105,8 +100,8 @@ const NavigationBar = (props) => {
                       All Category
                     </span>
                     <ul>
-                      {category.data &&
-                        category.data.map((catData) => (
+                      {category &&
+                        category.map((catData) => (
                           <li>
                             <a href={`/filter/${catData._id}`}>
                               {catData.name}
@@ -143,9 +138,9 @@ const NavigationBar = (props) => {
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu>
-                        <Dropdown.Item href='#/action-2'>
+                        {/* <Dropdown.Item href='#/action-2'>
                           Proffile
-                        </Dropdown.Item>
+                        </Dropdown.Item> */}
                         <Dropdown.Item href='/logout'>Logout</Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
