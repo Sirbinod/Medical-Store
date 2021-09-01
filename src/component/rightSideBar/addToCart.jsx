@@ -71,6 +71,7 @@ const CartRightSideBar = (props) => {
                   </Col>
                   <Col md={2}>
                     <RiDeleteBin6Line
+                      style={{ cursor: "pointer" }}
                       onClick={() => {
                         dispatch(deleteCart(user.token, cartProduct, addToast));
                       }}

@@ -99,13 +99,18 @@ export const deleteFromCart = (data) => {
 export const deleteCart = (token, data, addToast) => async (dispatch) => {
   try {
     const res = await authDelete(cartDeleteapi(data.product._id, true), token);
-    dispatch(deleteFromCart(data));
-    if (addToast) {
-      addToast("Item Delete From Cart", {
-        appearance: "warning",
-        autoDismiss: true,
-      });
-    }
+console.log(res, "what is here some kind");
+if (res.success) {
+  dispatch(deleteFromCart(data));
+  if (addToast) {
+    addToast("Item Delete From Cart", {
+      appearance: "warning",
+      autoDismiss: true,
+    });
+  }
+}
+
+ 
   } catch (error) {
     dispatch(cartFail(error));
   }

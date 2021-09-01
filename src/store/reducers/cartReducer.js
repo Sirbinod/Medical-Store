@@ -50,6 +50,7 @@ const cartReducer = (state = initState, action) => {
           quantity: state.quantity ? state.quantity : action.quantity,
           loading: false,
           success: true,
+          cart: prevcarts,
         };
       } else
         return {
@@ -74,36 +75,38 @@ const cartReducer = (state = initState, action) => {
         error: action.payload,
       };
 
-    case DECREASE_QUANTITY:
-      const carts = state.cart;
-      if (state.quantity === 1) {
-        const ramainingItems = (carts, items) =>
-          carts.filter((cartItem) => cartItem._is !== items.dat._id);
-        return ramainingItems(carts, items);
-      } else {
-        return carts.map((item) =>
-          item._id === items.data._id
-            ? { ...state, quantity: state.quantity - 1 }
-            : state,
-        );
-      }
+    // case DECREASE_QUANTITY:
+    //   const carts = state.cart;
+    //   if (state.quantity === 1) {
+    //     const ramainingItems = (carts, items) =>
+    //       carts.filter((cartItem) => cartItem._is !== items.dat._id);
+    //     return ramainingItems(carts, items);
+    //   } else {
+    //     return carts.map((item) =>
+    //       item._id === items.data._id
+    //         ? { ...state, quantity: state.quantity - 1 }
+    //         : state,
+    //     );
+    //   }
     case DELETE_FROM_CART:
       const { products } = action.payload;
-           const prevcart = state.cart.products;
+      const prevcart = state.cart.products;
 
-           const filteredRemove = prevcart.filter(
-             (x) => x.product._id !== products.product._id,
-           );
-       if (filteredRemove.length > 0) {
-       } else {
-         prevcart.push(filteredRemove);
-       }
-      
-      return {
+      const filteredRemove = prevcart.filter(
+        (x) => x.product._id !== products.product._id,
+      );
+      if (filteredRemove.length > 0) {
+      } else {
+        prevcart.push(filteredRemove);
+      }
+      console.log(products, "here product delete")
+      console.log(prevcart, "new Product xa ki nai")
+        return {
         ...state,
         loading: false,
         success: true,
         quantity: state.quantity-products.quantity,
+        cart: prevcart
       };
 
     default:
