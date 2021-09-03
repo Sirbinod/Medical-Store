@@ -17,6 +17,8 @@ import Login from "./screen/auth/login";
 import { ToastProvider } from "react-toast-notifications";
 import Logout from "./screen/auth/logout";
 import Signup from "./screen/auth/signup";
+import OrderOut from "./screen/checkout/orderout";
+import Success from "./screen/success/success";
 function App() {
   return (
     <>
@@ -36,6 +38,8 @@ function App() {
           <Route path='/about' component={About} />
           <Route path='/contact' component={Contact} />
           <Route path='/logout' component={Logout} />
+          <Route path='/order' component={OrderOut} />
+          <Route path='/order-success' component={Success} />
         </Switch>
         <RightSideBar />
         <CartRightSideBar />

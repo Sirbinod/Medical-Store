@@ -1,6 +1,7 @@
 import React from "react";
 import SectionTitle from "./sectionTitle";
 import TextGrid from "./textGrid";
+import { ReactSearchAutocomplete } from "react-search-autocomplete";
 
 const About = () => {
   return (

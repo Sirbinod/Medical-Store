@@ -1,4 +1,4 @@
-export const baseurl = "http://pharmamanduapi.lightwebgroup.com/api/v1";
+export const baseurl = "https://api.pharmamandu.com/api/v1";
 
 // user
 export const loginapi = `${baseurl}/auth/login`;
@@ -20,3 +20,11 @@ export const cartDeleteapi = (id, data) => {
   return `${baseurl}/carts?productId=${id}&all=${data}`;
 };
 
+// address
+export const addressapi = `${baseurl}/address`;
+
+//order
+export const orderapi = `${baseurl}/orders`;
+
+// banner
+export const bannerapi = `${baseurl}/banners`;

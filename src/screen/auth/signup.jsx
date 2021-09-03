@@ -5,14 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
 import { Field, reduxForm } from "redux-form";
-import {
-  login,
-  loginFail,
-  loginOpen,
-  loginStart,
-  loginSuccess,
-  signupStart,
-} from "../../store/action/profileAction";
+import { signupStart } from "../../store/action/profileAction";
 import { registerapi } from "../../utility/api";
 import { normalPost } from "../../utility/requiest";
 import validate from "./validate";
@@ -50,14 +43,12 @@ const Signup = (props, show) => {
   const { handleSubmit, reset, pristine, submitting } = props;
 
   const onSubmit = async (e) => {
-    console.log(e, "error ho ho ho ho");
     setModelState({
       ...modelState,
       loading: true,
     });
     try {
       const res = await normalPost(e, registerapi);
-      console.log(res, "res log here");
       if (res.data.success) {
         setModelState({
           ...modelState,
@@ -69,7 +60,7 @@ const Signup = (props, show) => {
           addToast("Added To Cart", {
             appearance: "success",
             autoDismiss: true,
-            location: "topleft",
+            // location: "topleft",
           });
         }
       }
@@ -79,7 +70,7 @@ const Signup = (props, show) => {
         loading: false,
         error: err.response
           ? err.response.data.message
-          : "Unable to login at this moment. Please try again",
+          : "Unable to sign up at this moment. Please try again",
       });
     }
   };

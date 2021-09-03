@@ -7,6 +7,7 @@ import {
   DELETE_FROM_CART,
   CART_DATA_FETCH,
   CART_FAIL,
+  CART_EMPTY,
 } from "./actionType";
 
 export const cartStart = () => {
@@ -22,7 +23,6 @@ export const cartFail = (data) => {
 };
 // add to cart
 export const addToCart = (data, quantity, product) => {
-  console.log(data);
   return {
     type: ADD_TO_CART,
     payload: { data, quantity, product },
@@ -30,7 +30,6 @@ export const addToCart = (data, quantity, product) => {
 };
 
 export const addCart = (_id, token, addToast) => async (dispatch) => {
-  console.log(_id, "cart Id hrereer");
   const data = { productId: _id, quantity: "1" };
   // dispatch(cartStart());
   try {
@@ -44,8 +43,14 @@ export const addCart = (_id, token, addToast) => async (dispatch) => {
         location: "topleft",
       });
     }
-  } catch (error) {
-    dispatch(cartFail(error));
+  } catch (err) {
+    dispatch(
+      cartFail(
+        err.response
+          ? err.response.data.message
+          : "Unable to add in cart at this moment. Please try again",
+      ),
+    );
   }
 };
 
@@ -58,13 +63,25 @@ export const cartDataFetch = (data) => {
   };
 };
 
+export const cartEpty = () => {
+  return {
+    type: CART_EMPTY,
+  };
+};
+
 export const cartDate = (token) => async (dispatch) => {
   dispatch(cartStart());
   try {
     const res = await authGet(cartapi, token);
     dispatch(cartDataFetch(res.data));
-  } catch (error) {
-    dispatch(cartFail(error));
+  } catch (err) {
+    dispatch(
+      cartFail(
+        err.response
+          ? err.response.data.message
+          : "Unable to fetch item from cart  at this moment. Please try again",
+      ),
+    );
   }
 };
 
@@ -99,19 +116,21 @@ export const deleteFromCart = (data) => {
 export const deleteCart = (token, data, addToast) => async (dispatch) => {
   try {
     const res = await authDelete(cartDeleteapi(data.product._id, true), token);
-console.log(res, "what is here some kind");
-if (res.success) {
-  dispatch(deleteFromCart(data));
-  if (addToast) {
-    addToast("Item Delete From Cart", {
-      appearance: "warning",
-      autoDismiss: true,
-    });
-  }
-}
 
- 
-  } catch (error) {
-    dispatch(cartFail(error));
+    dispatch(cartDate(token));
+    if (addToast) {
+      addToast("Item Delete From Cart", {
+        appearance: "warning",
+        autoDismiss: true,
+      });
+    }
+  } catch (err) {
+    dispatch(
+      cartFail(
+        err.response
+          ? err.response.data.message
+          : "Unable to delete cart at this moment. Please try again",
+      ),
+    );
   }
 };

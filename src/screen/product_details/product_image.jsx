@@ -3,14 +3,12 @@ import { Card } from "react-bootstrap";
 import Swiper from "react-id-swiper";
 
 const ProductImage = (data) => {
-  console.log(data, "datatata hahaha tattatttata lololo");
-  console.log(data, "image datata tatatta ttatata");
   return (
     <>
       <Card className='main-image-card'>
         <img
           className='main-image'
-          src={`http://pharmamanduapi.lightwebgroup.com/${data.image.path}`}
+          src={`https://api.pharmamandu.com/${data.image.path}`}
           alt=''
         />
       </Card>

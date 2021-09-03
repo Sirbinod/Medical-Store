@@ -3,8 +3,12 @@ import { ImCross } from "react-icons/im";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
-import { cartDate } from "../../store/action/cartAction";
+import { useToasts } from "react-toast-notifications";
+
+import { cartDate, deleteCart } from "../../store/action/cartAction";
 const Add_Cart = () => {
+  const { addToast } = useToasts();
+
   const { cart, loading } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.profile);
   const dispatch = useDispatch();
@@ -31,7 +35,7 @@ const Add_Cart = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {cart.data &&
+                  {cart.data && cart.data.totalQuantity !== 0 ? (
                     cart.data.products.map((cartData) => (
                       <tr>
                         <td className='product-thumbnail'>
@@ -44,12 +48,13 @@ const Add_Cart = () => {
                           </Link>
                         </td>
                         <td className='product-name'>
-                          <Link>Nivea Aloe Hydration Body Lotion 400 Ml</Link>
+                          {cartData.product.name}
                         </td>
                         <td className='product-price-cart'>
                           <>
-                            <span className='amount old'>12</span>
-                            <span className='amount'>12</span>
+                            <span className='amount'>
+                              {cartData.product.cost}
+                            </span>
                           </>
                         </td>
                         <td className='product-quantity'>
@@ -64,13 +69,27 @@ const Add_Cart = () => {
                             <button className='inc qtybutton'>+</button>
                           </div>
                         </td>
-                        <td className='product-subtotal'> 38</td>
+                        <td className='product-subtotal'>
+                          {cartData.quantity * cartData.product.cost}
+                        </td>
 
                         <td className='product-remove'>
-                          <ImCross />
+                          <ImCross
+                            style={{ cursor: "pointer" }}
+                            onClick={() => {
+                              dispatch(
+                                deleteCart(user.token, cartData, addToast),
+                              );
+                            }}
+                          />
                         </td>
                       </tr>
-                    ))}
+                    ))
+                  ) : (
+                    <h1 className='mx-5 my-3 px-5' style={{ width: "100%" }}>
+                      No Item in Cart
+                    </h1>
+                  )}
                 </tbody>
               </table>
             </div>

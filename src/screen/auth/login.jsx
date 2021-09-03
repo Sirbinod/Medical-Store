@@ -47,14 +47,12 @@ const Login = (props, show) => {
   const { handleSubmit, reset, pristine, submitting } = props;
 
   const onSubmit = async (e) => {
-    console.log(e, "login e harearee");
     setModelState({
       ...modelState,
       loading: true,
     });
     try {
       const res = await login(e);
-      console.log(res, "responce hrerer");
       if (res.data.success) {
         dispatch(loginSuccess(res.data));
         setModelState({
@@ -64,7 +62,6 @@ const Login = (props, show) => {
         dispatch(loginOpen());
       }
     } catch (err) {
-      console.log(err, "login error");
       setModelState({
         ...modelState,
         loading: false,
@@ -108,7 +105,7 @@ const Login = (props, show) => {
                     type='email'
                     className='form-control'
                     component={renderField}
-                    label='enter  asdas'
+                    label='enter email'
                   />
                 </Form.Group>
 

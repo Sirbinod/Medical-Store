@@ -27,7 +27,7 @@ const Justforyou = (data) => {
         <a href={`/product_details/${data.data._id}`} className='image_wrap'>
           <img
             className='image'
-            src={`http://pharmamanduapi.lightwebgroup.com${data.data.image.path}`}
+            src={`https://api.pharmamandu.com/${data.data.image.path}`}
           />
         </a>
         {data.data.discount !== 0 ? (

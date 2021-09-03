@@ -12,23 +12,13 @@ import { useToasts } from "react-toast-notifications";
 
 const CartRightSideBar = (props) => {
   const { addToast } = useToasts();
-  const [custCart, setCustCart] = useState();
   const { cart, loading } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.profile);
-  const { product } = useSelector((state) => state.product);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(cartDate(user && user.token));
     dispatch(productFetch());
-
-    cart.data && cart.data.products.map((cartData) => setCustCart(cartData));
   }, dispatch);
-  console.log(custCart, "cart to here add here no no");
-
-  const cartfilter =
-    product &&
-    product.filter((fProduct) => fProduct._id === "612353fe6f04126ac313a5ff");
-  console.log(cartfilter, "hello here cartfilter");
 
   return (
     <>
@@ -37,7 +27,6 @@ const CartRightSideBar = (props) => {
           <div data-simplebar className='h-100'>
             <div className='rightbar-title px-3 py-4'>
               <Link
-                to='#'
                 onClick={(e) => {
                   e.preventDefault();
                   document
@@ -51,23 +40,23 @@ const CartRightSideBar = (props) => {
             </div>
 
             <hr className='my-0' />
-            {cart.data ? (
+            {cart.data && cart.data.totalQuantity !== 0 ? (
               cart.data.products.map((cartProduct) => (
                 <Row className='right-bar-item'>
                   <Col md={4}>
                     <div className='right-bar-item-image'>
-                      {cartfilter.map((cartimg) => (
-                        <img
-                          src={`http://pharmamanduapi.lightwebgroup.com${cartimg.image.path}`}
-                        />
-                      ))}
+                      <img
+                        src={`http://pharmamanduapi.lightwebgroup.com$`}
+                        alt='cart img'
+                      />
                     </div>
                   </Col>
                   <Col md={6}>
-                    {cartfilter.map((cartname) => (
-                      <h6>{cartname.chemicalName}</h6>
-                    ))}
-                    <span> $ 200</span>
+                    <h6>{cartProduct.product.name}</h6>
+
+                    <span>
+                      {cartProduct.quantity} X Rs {cartProduct.product.cost}
+                    </span>
                   </Col>
                   <Col md={2}>
                     <RiDeleteBin6Line
@@ -80,9 +69,15 @@ const CartRightSideBar = (props) => {
                 </Row>
               ))
             ) : (
-              <>Cart empty</>
+              <div className='mx-5 my-5'>No Item in Cart</div>
             )}
-            <hr className='mb-5 ' />
+            <hr className='mb-3' />
+            <div className='d-flex justify-content-between px-3'>
+              <h5>Total:</h5>
+              <h5>{cart.data && cart.data.totalPrice}</h5>
+            </div>
+            <hr className='mb-5' />
+
             <div className='d-flex justify-content-around'>
               <div
                 onClick={(e) => {

@@ -64,17 +64,14 @@ const Product_details = (props) => {
     dispatch(categoryFetch());
   }, [dispatch]);
 
-  let filterCat;
-  if (category.data) {
-    filterCat = category.filter((x) => x._id === props.match.params.id);
+
+  let suggested;
+  if (!modelState.loading) {
+    suggested = product.filter(
+      (listData) =>
+        listData.category._id === modelState.productDetails.category._id,
+    );
   }
-  // let suggested = [];
-  // if (!modelState.loading) {
-  //   suggested = product.filter(
-  //     (listData) =>
-  //       listData.category._id === modelState.productDetails.category._id,
-  //   );
-  // }
 
   const responsive = {
     superLargeDesktop: {
@@ -100,11 +97,11 @@ const Product_details = (props) => {
     return (
       <>
         <div className='container'>
-          <Breadcrumb className='mt-3'>
+          {/* <Breadcrumb className='mt-3'>
             <Breadcrumb.Item href='#'>Home</Breadcrumb.Item>
             <Breadcrumb.Item href=''>Health Care</Breadcrumb.Item>
             <Breadcrumb.Item active>Data</Breadcrumb.Item>
-          </Breadcrumb>
+          </Breadcrumb> */}
           <section class='my-5'>
             <div class='row'>
               <div class='col-md-6 mb-4 mb-md-0 custom-col'>
@@ -184,7 +181,7 @@ const Product_details = (props) => {
               <h3 className='most-popular-title'>Latest product</h3>
             </div>
             <Carousel responsive={responsive}>
-              {product && product.map((data) => <Justforyou data={data} />)}
+              {suggested && suggested.map((data) => <Justforyou data={data} />)}
             </Carousel>
           </div>
         </div>

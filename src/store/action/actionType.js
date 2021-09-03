@@ -21,6 +21,7 @@ export const DECREASE_QUANTITY = "DECREASE_QUANTITY";
 export const DELETE_FROM_CART = "ADD_TO_CART";
 export const CART_DATA_FETCH = "CARTZ_DATA_FETCH";
 export const CART_FAIL = "CART_FAIL";
+export const CART_EMPTY = "CART_EMPTY";
 
 // profile
 

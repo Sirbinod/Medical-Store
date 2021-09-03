@@ -70,12 +70,12 @@ header {
       }
       .group-cart {
         display: flex;
-        width: 15rem;
+        width: 15.4rem;
         justify-content: space-between;
         align-items: center;
         color: $white;
         .icons {
-          margin-right: 0.5em;
+         
           cursor: pointer;
           position: relative;
           width: 2rem;
@@ -97,7 +97,7 @@ header {
           }
           .icon {
             position: absolute;
-            font-size: 1.7rem;
+            font-size: 2rem;
             line-height: 2.4;
           }
         }

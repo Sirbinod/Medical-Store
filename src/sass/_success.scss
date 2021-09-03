@@ -1,0 +1,48 @@
+.success{
+    margin: 3rem 0;
+    .success-card{
+        max-width: 28rem;
+        margin: auto;
+        padding: 3rem 0 0 0 ;
+        .success-mark{
+            width: 10rem;
+            height: 10rem;
+            border-radius: 100%;
+            background-color: #F8FAF5;
+            margin: auto;
+            text-align: center;
+            .success-mark-icon{
+                font-size: 4rem;
+                color: $primaryColor;
+                margin: 3rem 0;
+            }
+        }
+        .success-contain{
+            text-align: center;
+            margin: 2rem 0;
+            h2{
+                color: $secondaryColor;
+            }
+            h5{
+                color: rgb(172, 162, 162);
+            }
+        }
+    }
+    .end-button{
+            max-width: 18rem;
+    margin: auto;
+    padding: 3rem 0;
+        .continue-home{
+                font-size: 1rem;
+    font-weight: 600;
+    line-height: 1;
+    display: inline-block;
+    padding: 1.15rem 4rem 1.06rem;
+    text-transform: uppercase;
+    color: #ffffff;
+    border-radius: 3rem;
+    background-color:$secondaryColor;
+    margin: auto;
+        }
+    }
+}

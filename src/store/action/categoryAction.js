@@ -31,7 +31,13 @@ export const categoryFetch = () => async (dispatch) => {
   try {
     const res = await normalGet(categoryapi);
     dispatch(categoryFetchSuccess(res.data.data));
-  } catch (error) {
-    dispatch(categoryFetchFail(error));
+  } catch (err) {
+    dispatch(
+      categoryFetchFail(
+        err.response
+          ? err.response.data.message
+          : "Unable to category display at this moment. Please try again",
+      ),
+    );
   }
 };

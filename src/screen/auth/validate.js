@@ -36,11 +36,11 @@ const validate = (values) => {
   if (!values.lastname) {
     errors.lastname = "Last Name field shouldn’t be empty";
   }
-  if (!values.phone) {
-    errors.phone = "phone Number field shouldn’t be empty";
-  } else if (values.password.length == 10) {
-    errors.phone = "The phone Number should be 10 ";
-  }
+  // if (!values.phone) {
+  //   errors.phone = "phone Number field shouldn’t be empty";
+  // } else if (values.password.length == 10) {
+  //   errors.phone = "The phone Number should be 10 ";
+  // }
   return errors;
 };
 

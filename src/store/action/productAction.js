@@ -62,7 +62,13 @@ export const productFetch = () => async (dispatch) => {
     const res = await normalGet(productListapi);
     dispatch(productFetchSuccess(res.data.data.docs));
   } catch (err) {
-    dispatch(productFetchFail(err));
+    dispatch(
+      productFetchFail(
+        err.response
+          ? err.response.data.message
+          : "Unable to product display at this moment. Please try again",
+      ),
+    );
   }
 };
 
@@ -74,7 +80,13 @@ export const popularProduct = () => async (dispatch) => {
 
     dispatch(popularProductSuccess(res.data.data));
   } catch (err) {
-    dispatch(productFetchFail(err));
+    dispatch(
+      productFetchFail(
+        err.response
+          ? err.response.data.message
+          : "Unable to popular product display at this moment. Please try again",
+      ),
+    );
   }
 };
 
@@ -84,8 +96,14 @@ export const discountProduct = () => async (dispatch) => {
   try {
     const res = await normalGet(mostDiscountapi);
     dispatch(discountProductSuccess(res.data.data));
-  } catch (error) {
-    dispatch(productFetchFail(error));
+  } catch (err) {
+    dispatch(
+      productFetchFail(
+        err.response
+          ? err.response.data.message
+          : "Unable to discount product dispaly at this moment. Please try again",
+      ),
+    );
   }
 };
 
@@ -95,7 +113,13 @@ export const latestProducts = () => async (dispatch) => {
   try {
     const res = await normalGet(latestProductapi);
     dispatch(latestProductSuccess(res.data));
-  } catch (error) {
-    dispatch(productFetchFail(error));
+  } catch (err) {
+    dispatch(
+      productFetchFail(
+        err.response
+          ? err.response.data.message
+          : "Unable to latest Product at this moment. Please try again",
+      ),
+    );
   }
 };

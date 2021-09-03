@@ -21,6 +21,8 @@
     "react-responsive-carousel": "^3.2.20",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-search-autocomplete": "^5.4.2",
+    "react-select": "^4.3.1",
     "react-slick": "^0.28.1",
     "react-tabs": "^3.2.2",
     "react-toast-notifications": "^2.5.1",
@@ -35,8 +37,8 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-     "predeploy": "npm run build",
-   "deploy": "gh-pages -d build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

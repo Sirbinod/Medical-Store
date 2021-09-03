@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from "react";
-import {Form, Row, Col} from "react-bootstrap";
-import {BsGrid3X3Gap, BsListUl} from "react-icons/bs";
-import {useDispatch, useSelector} from "react-redux";
+import { Row, Col } from "react-bootstrap";
+import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import { BsGrid3X3Gap, BsListUl } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
 import Justforyou from "../../component/justforyou/justforyou";
-import {AiFillStar} from "react-icons/ai";
+import { AiFillStar } from "react-icons/ai";
 import List_view from "../../component/product_card/list_view";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import Carousel from "react-multi-carousel";
@@ -11,22 +12,22 @@ import Paginator from "react-hooks-paginator";
 import "react-multi-carousel/lib/styles.css";
 import { productFetch } from "../../store/action/productAction";
 
+let init = false;
 const Filter_page = (props) => {
   //  const [checked, setChecked] = useState(true);
+  // const [filterData, setFilterData] = useState();
 
   const dispatch = useDispatch();
   const { product, loading } = useSelector((state) => state.product);
   let firstFilterData;
 
   if (product) {
-    firstFilterData =
-      product &&
-      product.filter(
-        (productFilter) => productFilter.category._id === props.match.params.id,
-      );
+    firstFilterData = product.filter(
+      (productFilter) => productFilter.category._id === props.match.params.id,
+    );
+
+    // setFilterData(firstFilterData);
   }
-  console.log(firstFilterData, " firstData filter herer");
-  const [filterData, setFilterData] = useState(firstFilterData);
 
   useEffect(() => {
     dispatch(productFetch());
@@ -67,7 +68,7 @@ const Filter_page = (props) => {
       items: 2,
     },
   };
-  const pageLimit = 4;
+
   const [isGrid, setIsGrid] = useState(true);
   const isGridView = () => {
     setIsGrid(true);
@@ -75,8 +76,6 @@ const Filter_page = (props) => {
   const isListView = () => {
     setIsGrid(false);
   };
-
-  console.log(filterData, "filter data");
 
   return (
     <>
@@ -96,30 +95,16 @@ const Filter_page = (props) => {
                 <span>Availability</span>
                 <div className='filterby_check'>
                   <Form>
-                    <Form.Group className='mb-3' controlId='formBasicCheckbox'>
-                      <div className='form-check'>
-                        <label className='form-check-label text-muted'>
-                          <input
-                            type='checkbox'
-                            // onChange={showPrescription}
-                            className='form-check-input'
-                          />
-                          Prescriptions
-                        </label>
-                      </div>
-                    </Form.Group>
-                    <Form.Group className='mb-3' controlId='formBasicCheckbox'>
-                      <div className='form-check'>
-                        <label className='form-check-label text-muted'>
-                          <input
-                            type='checkbox'
-                            // onChange={showNonPrescription}
-                            className='form-check-input'
-                          />
-                          Non-Prescriptions
-                        </label>
-                      </div>
-                    </Form.Group>
+                    <FormGroup check>
+                      <Label check>
+                        <Input type='radio' name='radio1' /> Prescriptions
+                      </Label>
+                    </FormGroup>
+                    <FormGroup check>
+                      <Label check>
+                        <Input type='radio' name='radio1' /> Non-Prescriptions
+                      </Label>
+                    </FormGroup>
                   </Form>
                 </div>
               </div>
@@ -127,42 +112,24 @@ const Filter_page = (props) => {
                 <span>Price</span>
                 <div className='filterby_check'>
                   <Form>
-                    <Form.Group className='mb-3' controlId='formBasicCheckbox'>
-                      <div className='form-check'>
-                        <label className='form-check-label text-muted'>
-                          <input
-                            type='checkbox'
-                            // onChange={show200}
-                            className='form-check-input'
-                          />
-                          <span>0</span>-<span>200</span>
-                        </label>
-                      </div>
-                    </Form.Group>
-                    <Form.Group className='mb-3' controlId='formBasicCheckbox'>
-                      <div className='form-check'>
-                        <label className='form-check-label text-muted'>
-                          <input
-                            type='checkbox'
-                            // onChange={show500}
-                            className='form-check-input'
-                          />
-                          <span>201</span>-<span>500</span>
-                        </label>
-                      </div>
-                    </Form.Group>
-                    <Form.Group className='mb-3' controlId='formBasicCheckbox'>
-                      <div className='form-check'>
-                        <label className='form-check-label text-muted'>
-                          <input
-                            type='checkbox'
-                            // onChange={show1000}
-                            className='form-check-input'
-                          />
-                          <span>501</span>-<span>1000</span>
-                        </label>
-                      </div>
-                    </Form.Group>
+                    <FormGroup check>
+                      <Label check>
+                        <Input type='radio' name='radio2' /> <span>0</span>-
+                        <span>200</span>
+                      </Label>
+                    </FormGroup>
+                    <FormGroup check>
+                      <Label check>
+                        <Input type='radio' name='radio2' /> <span>201</span>-
+                        <span>500</span>
+                      </Label>
+                    </FormGroup>
+                    <FormGroup check>
+                      <Label check>
+                        <Input type='radio' name='radio2' /> <span>201</span>-
+                        <span>500</span>
+                      </Label>
+                    </FormGroup>
                   </Form>
                 </div>
               </div>
@@ -238,8 +205,7 @@ const Filter_page = (props) => {
               <>loading...</>
             ) : (
               <Carousel responsive={responsive}>
-                {firstFilterData &&
-                  firstFilterData.map((data) => <Justforyou data={data} />)}
+                {product && product.map((data) => <Justforyou data={data} />)}
               </Carousel>
             )}
           </div>

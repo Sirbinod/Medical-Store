@@ -14,10 +14,10 @@ import { categoryFetch } from "../../store/action/categoryAction";
 import { loginOpen } from "../../store/action/profileAction";
 import { cartDate } from "../../store/action/cartAction";
 import { FaFileUpload } from "react-icons/fa";
+import Search from "../search/search";
 const NavigationBar = (props) => {
   const { category, loading } = useSelector((state) => state.category);
   const dispatch = useDispatch();
-
 
   const { cart } = useSelector((state) => state.cart);
   const { user, isLoggedIn } = useSelector((state) => state.profile);
@@ -38,7 +38,7 @@ const NavigationBar = (props) => {
             </Link>
 
             {/* search field  */}
-            <Form className='inline-form'>
+            {/* <Form className='inline-form'>
               <input
                 className='form-control'
                 type='search'
@@ -47,7 +47,8 @@ const NavigationBar = (props) => {
               <Button className='search-btn' type='submit'>
                 <BiSearch />
               </Button>
-            </Form>
+            </Form> */}
+            <Search />
             <div className='group-cart'>
               {/* <div className='icons'>
                 <span className='count-cart'>0</span>
@@ -63,7 +64,7 @@ const NavigationBar = (props) => {
               </div> */}
               <div className='icons'>
                 <span className='count-cart'>
-                  {cart.data && cart.data.totalQuantity}
+                  {cart.data ? cart.data.totalQuantity : 0}
                 </span>
                 <BiCart
                   onClick={() => {

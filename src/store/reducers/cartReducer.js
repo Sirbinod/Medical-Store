@@ -5,6 +5,7 @@ import {
   CART_START,
   DECREASE_QUANTITY,
   DELETE_FROM_CART,
+  CART_EMPTY,
 } from "../action/actionType";
 
 const initState = {
@@ -88,6 +89,13 @@ const cartReducer = (state = initState, action) => {
     //         : state,
     //     );
     //   }
+
+    case CART_EMPTY:
+      return {
+        ...state,
+        cart: [],
+        quantity: 0,
+      };
     case DELETE_FROM_CART:
       const { products } = action.payload;
       const prevcart = state.cart.products;
@@ -99,14 +107,12 @@ const cartReducer = (state = initState, action) => {
       } else {
         prevcart.push(filteredRemove);
       }
-      console.log(products, "here product delete")
-      console.log(prevcart, "new Product xa ki nai")
-        return {
+      return {
         ...state,
         loading: false,
         success: true,
-        quantity: state.quantity-products.quantity,
-        cart: prevcart
+        quantity: state.quantity - products.quantity,
+        // cart: prevcart
       };
 
     default:
