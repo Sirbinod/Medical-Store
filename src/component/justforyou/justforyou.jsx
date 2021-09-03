@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 
-import { AiFillStar } from "react-icons/ai";
-import { MdFavoriteBorder } from "react-icons/md";
 import { BiCart } from "react-icons/bi";
 import { FiEye } from "react-icons/fi";
 import { Link } from "react-router-dom";
@@ -15,11 +13,6 @@ const Justforyou = (data) => {
   const { user, isLoggedIn } = useSelector((state) => state.profile);
 
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(productDetail(props.match.params.id));
-  //   dispatch(productFetch());
-  // }, [dispatch]);
 
   return (
     <div className='product-grid'>
@@ -76,9 +69,6 @@ const Justforyou = (data) => {
           {/* <span>$0.00</span> */}
           {data.data.cost}
         </div>
-        {/* <a className="add-to-cart" href="#">
-          add to cart
-        </a> */}
       </div>
     </div>
   );

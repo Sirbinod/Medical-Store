@@ -57,7 +57,6 @@ const Home = () => {
 
     try {
       const res = await normalGet(bannerapi);
-      console.log(res, "banner data here");
       setModelBanner({
         ...modelBanner,
         loading: false,
@@ -95,7 +94,6 @@ const Home = () => {
   const smallAds =
     modelBanner.bannerItem &&
     modelBanner.bannerItem.filter((data) => data.type === "Small Aid");
-  smallAds && smallAds.map((sAds) => console.log(sAds.image));
   return (
     <>
       <div>

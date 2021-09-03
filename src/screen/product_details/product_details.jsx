@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import ProductImage from "./product_image";
-import Breadcrumb from "react-bootstrap/Breadcrumb";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Justforyou from "../../component/justforyou/justforyou";
@@ -14,6 +13,7 @@ import { useToasts } from "react-toast-notifications";
 import { normalGet } from "../../utility/requiest";
 import { productDetailapi } from "../../utility/api";
 import { categoryFetch } from "../../store/action/categoryAction";
+import { loginOpen } from "../../store/action/profileAction";
 
 const Product_details = (props) => {
   const { addToast } = useToasts();
@@ -64,7 +64,6 @@ const Product_details = (props) => {
     dispatch(categoryFetch());
   }, [dispatch]);
 
-
   let suggested;
   if (!modelState.loading) {
     suggested = product.filter(
@@ -97,11 +96,6 @@ const Product_details = (props) => {
     return (
       <>
         <div className='container'>
-          {/* <Breadcrumb className='mt-3'>
-            <Breadcrumb.Item href='#'>Home</Breadcrumb.Item>
-            <Breadcrumb.Item href=''>Health Care</Breadcrumb.Item>
-            <Breadcrumb.Item active>Data</Breadcrumb.Item>
-          </Breadcrumb> */}
           <section class='my-5'>
             <div class='row'>
               <div class='col-md-6 mb-4 mb-md-0 custom-col'>
@@ -160,13 +154,15 @@ const Product_details = (props) => {
                   <div
                     className='add-button'
                     onClick={() =>
-                      dispatch(
-                        addCart(
-                          modelState.productDetails._id,
-                          user.token,
-                          addToast,
-                        ),
-                      )
+                      isLoggedIn
+                        ? dispatch(
+                            addCart(
+                              modelState.productDetails._id,
+                              user.token,
+                              addToast,
+                            ),
+                          )
+                        : dispatch(loginOpen())
                     }>
                     Add To Card
                   </div>

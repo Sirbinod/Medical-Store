@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, Redirect } from "react-router-dom";
 import { Col, Row } from "reactstrap";
-import Select from "react-select";
 import { useState } from "react";
 import { Field, reduxForm } from "redux-form";
 import validate from "../auth/validate";
@@ -184,7 +182,7 @@ const Checkout = (props) => {
                           </li>
                         ))
                       ) : (
-                        <>jndsj</>
+                        <span>!No Item in Cart</span>
                       )}
                     </ul>
                   </div>

@@ -4,11 +4,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BiSearch } from "react-icons/bi";
 import { BiCart } from "react-icons/bi";
 import { BsPersonFill } from "react-icons/bs";
-import { MdFavoriteBorder } from "react-icons/md";
 import { BsList } from "react-icons/bs";
 
 import { Link } from "react-router-dom";
-import Login from "../../screen/auth/login";
 import { useDispatch, useSelector } from "react-redux";
 import { categoryFetch } from "../../store/action/categoryAction";
 import { loginOpen } from "../../store/action/profileAction";
@@ -37,17 +35,7 @@ const NavigationBar = (props) => {
               <h2>Pharmamandu</h2>
             </Link>
 
-            {/* search field  */}
-            {/* <Form className='inline-form'>
-              <input
-                className='form-control'
-                type='search'
-                placeholder='Search for products...'
-                aria-label='Search'></input>
-              <Button className='search-btn' type='submit'>
-                <BiSearch />
-              </Button>
-            </Form> */}
+            {/*  */}
             <Search />
             <div className='group-cart'>
               {/* <div className='icons'>

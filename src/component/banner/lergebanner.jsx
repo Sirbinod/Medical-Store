@@ -4,7 +4,6 @@ import {Carousel} from "react-responsive-carousel";
 import {Card, Button} from "react-bootstrap";
 
 const Lergebanner = (data) => {
-  console.log(data, "0987654321");
   return (
     <div>
       <Carousel autoPlay={true} infiniteLoop={true}>

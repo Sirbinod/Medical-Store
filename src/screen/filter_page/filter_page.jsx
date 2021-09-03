@@ -87,7 +87,7 @@ const Filter_page = (props) => {
             <Breadcrumb.Item active>Data</Breadcrumb.Item>
           </Breadcrumb> */}
           <Row className='filter mt-4'>
-            <Col xl={3} className='filter_left'>
+            {/* <Col xl={3} className='filter_left'>
               <div className='filter_heading'>
                 <span>Filter By</span>
               </div>
@@ -134,6 +134,7 @@ const Filter_page = (props) => {
                 </div>
               </div>
             </Col>
+            */}
             <Col className='filter_right'>
               <div className='filter_right_header'>
                 <Col className='col-6'>
