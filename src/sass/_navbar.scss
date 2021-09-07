@@ -19,6 +19,10 @@ header {
         color: $white;
         text-decoration: none;
       }
+      .search{
+        display: block;
+        // width: 55;
+      }
 
       .inline-form {
         display: flex;
@@ -65,6 +69,9 @@ header {
 
       @media (max-width: $layout-breakpoint-small) {
         .inline-form {
+          display: none;
+        }
+        .search{
           display: none;
         }
       }
@@ -303,10 +310,19 @@ left: -69px ;
     }
   }
 
-
+.search-row{
+  display: none;
+}
   $layout-breakpoint-very-small: 970px;
 
   @media (max-width: $layout-breakpoint-very-small) {
+     .header-main{
+       height: 4rem;
+       padding: 0.6rem 0;
+     }
+     .search-row{
+       display: block;
+     }
     .m-bar{
       display: flex;
     }
@@ -411,6 +427,13 @@ left: -69px ;
   }
 }
 
+
+  $layout-breakpoint-very-small: 584px;
+  @media (max-width: $layout-breakpoint-very-small) {
+.search-w{
+  width: 340px !important;
+}
+  }
 /* This hides the dropdowns */
 /* Display the dropdown */
 

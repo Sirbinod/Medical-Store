@@ -19,6 +19,7 @@ import Logout from "./screen/auth/logout";
 import Signup from "./screen/auth/signup";
 import OrderOut from "./screen/checkout/orderout";
 import Success from "./screen/success/success";
+import Precription from "./screen/auth/precription";
 function App() {
   return (
     <>
@@ -26,6 +27,7 @@ function App() {
         <NavigationBar />
         <Login />
         <Signup />
+        <Precription />
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/filter/:id' component={Filter_page} />

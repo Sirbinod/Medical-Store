@@ -3,6 +3,7 @@ import {
   LOGIN_SUCCESS,
   SIGNUP_START,
   LOGOUT,
+  ADD_PRECEPTION,
 } from "../action/actionType";
 
 let user = JSON.parse(localStorage.getItem("user"));
@@ -15,6 +16,7 @@ const initState = {
   error: null,
   modelOpen: false,
   modelROpen: false,
+  modelPrecription: false,
 };
 
 const ProfileReducer = (state = initState, action) => {
@@ -47,6 +49,11 @@ const ProfileReducer = (state = initState, action) => {
         ...state,
         isLoggedIn: false,
         user: null,
+      };
+    case ADD_PRECEPTION:
+      return {
+        ...state,
+        modelPrecription: !state.modelPrecription,
       };
     default:
       return state;

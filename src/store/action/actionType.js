@@ -29,3 +29,4 @@ export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const SIGNUP_START = "SIGNUP_START";
 export const LOGOUT = "LOGOUT";
+export const ADD_PRECEPTION = "ADD_PRECEPTION";

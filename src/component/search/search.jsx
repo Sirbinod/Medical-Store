@@ -43,7 +43,7 @@ const Search = () => {
     // return (<p dangerouslySetInnerHTML={{__html: '<strong>'+item+'</strong>'}}></p>); //To format result as html
   };
   return (
-    <div style={{ width: 500 }}>
+    <div style={{ width: 500 }} className='search-w'>
       <ReactSearchAutocomplete
         items={items}
         placeholder='Search in Pharmamandu'

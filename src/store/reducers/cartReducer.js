@@ -97,6 +97,11 @@ const cartReducer = (state = initState, action) => {
         quantity: 0,
       };
     case DELETE_FROM_CART:
+      return {
+        ...state,
+        quantity: state.quantity - 1,
+      };
+    case DELETE_FROM_CART:
       const { products } = action.payload;
       const prevcart = state.cart.products;
 

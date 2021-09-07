@@ -9,7 +9,7 @@ import { BsList } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { categoryFetch } from "../../store/action/categoryAction";
-import { loginOpen } from "../../store/action/profileAction";
+import { addPreception, loginOpen } from "../../store/action/profileAction";
 import { cartDate } from "../../store/action/cartAction";
 import { FaFileUpload } from "react-icons/fa";
 import Search from "../search/search";
@@ -36,7 +36,9 @@ const NavigationBar = (props) => {
             </Link>
 
             {/*  */}
-            <Search />
+            <div className='search'>
+              <Search />
+            </div>
             <div className='group-cart'>
               {/* <div className='icons'>
                 <span className='count-cart'>0</span>
@@ -64,7 +66,13 @@ const NavigationBar = (props) => {
                 />
               </div>
 
-              <div className='price-cart'>
+              <div
+                className='price-cart'
+                onClick={() =>
+                  isLoggedIn
+                    ? dispatch(addPreception())
+                    : dispatch(addPreception())
+                }>
                 <FaFileUpload className='upload-icon' />
 
                 <span>Upload Prescription</span>
@@ -74,7 +82,6 @@ const NavigationBar = (props) => {
         </div>
       </div>
       {/* end top navigationbar  */}
-
       {/* main nav  */}
       <div className='header-main'>
         <div className='container'>
@@ -142,10 +149,10 @@ const NavigationBar = (props) => {
                 </Nav>
               </Navbar.Collapse>
             </Navbar>
-            <Row>
+            <Row className='mx-2 search-row'>
               <Col>
-                {" "}
-                <Form className='small-form'>
+                <Search />
+                {/* <Form className='small-form'>
                   <input
                     className='form-control small-d-control'
                     type='search'
@@ -154,7 +161,7 @@ const NavigationBar = (props) => {
                   <Button className='search-btn small-d-search' type='submit'>
                     <BiSearch />
                   </Button>
-                </Form>
+                </Form> */}
               </Col>
             </Row>
           </div>

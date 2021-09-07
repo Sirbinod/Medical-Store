@@ -42,7 +42,7 @@ const Add_Cart = () => {
                           <Link>
                             <img
                               className='img-fluid'
-                              src='https://www.okdam.com/public/upload/product/extra/NIVEA-ALOE-YDRATION-BODY-LOTION-400-ML-5facd079cd119.jpg'
+                              src={`https://api.pharmamandu.com/${cartData.product.image.path}`}
                               alt=''
                             />
                           </Link>

@@ -87,14 +87,31 @@ export const cartDate = (token) => async (dispatch) => {
 
 // decrease from cart
 
-export const decreaseQuantity = (item, addToast) => (dispatch) => {
-  if (addToast) {
-    addToast("Item Decremented From Cart", {
-      appearance: "warning",
-      autoDismiss: true,
-    });
+
+
+export const decreaseQuantity = (data) => (dispatch) => {
+  dispatch({ type: DECREASE_QUANTITY, payload: data });
+};
+
+export const cartDecrease = (token, data, addToast) => async (dispatch) => {
+  try {
+    const res = await authDelete(cartDeleteapi(data.product._id, false), token);
+    dispatch(decreaseQuantity(token));
+    if (addToast) {
+      addToast("Item Decremented From Cart", {
+        appearance: "warning",
+        autoDismiss: true,
+      });
+    }
+  } catch (err) {
+    dispatch(
+      cartFail(
+        err.response
+          ? err.response.data.message
+          : "Unable to decrease cart at this moment. Please try again",
+      ),
+    );
   }
-  dispatch({ type: DECREASE_QUANTITY, payload: item });
 };
 
 //  delete from cart

@@ -46,7 +46,7 @@ const CartRightSideBar = (props) => {
                   <Col md={4}>
                     <div className='right-bar-item-image'>
                       <img
-                        src={`http://pharmamanduapi.lightwebgroup.com$`}
+                        src={`https://api.pharmamandu.com/${cartProduct.product.image.path}`}
                         alt='cart img'
                       />
                     </div>

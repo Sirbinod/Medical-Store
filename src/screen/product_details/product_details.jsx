@@ -14,6 +14,7 @@ import { normalGet } from "../../utility/requiest";
 import { productDetailapi } from "../../utility/api";
 import { categoryFetch } from "../../store/action/categoryAction";
 import { loginOpen } from "../../store/action/profileAction";
+import { Spinner } from "react-bootstrap";
 
 const Product_details = (props) => {
   const { addToast } = useToasts();
@@ -184,7 +185,21 @@ const Product_details = (props) => {
       </>
     );
   } else if (modelState.loading) {
-    return <>Loading</>;
+    return (
+      <div
+        style={{
+          width: "14rem",
+          height: "100vh",
+          margin: "auto",
+          padding: "10rem 0",
+        }}>
+        <Spinner
+          style={{ width: "8rem", height: "8rem", margin: "2rem 0" }}
+          animation='border'
+          variant='info'
+        />
+      </div>
+    );
   } else {
     return <>{modelState.error}</>;
   }

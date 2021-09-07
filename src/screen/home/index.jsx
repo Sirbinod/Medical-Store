@@ -1,8 +1,7 @@
 import React from "react";
-
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { Card, Row, Col, Button } from "react-bootstrap";
+import { Card, Row, Col, Spinner } from "react-bootstrap";
 import Lergebanner from "../../component/banner/lergebanner";
 import Justforyou from "../../component/justforyou/justforyou";
 import money from "../../assets/image/credit-card 1.svg";
@@ -19,6 +18,7 @@ import {
 import { useState } from "react";
 import { normalGet } from "../../utility/requiest";
 import { bannerapi } from "../../utility/api";
+import { width } from "dom7";
 
 const responsive = {
   superLargeDesktop: {
@@ -98,7 +98,23 @@ const Home = () => {
     <>
       <div>
         <section className='banner-section'>
-          <Lergebanner data={banner} />
+          {modelBanner.loading ? (
+            <div
+              style={{
+                width: "14rem",
+                height: "100vh",
+                margin: "auto",
+                padding: "10rem 0",
+              }}>
+              <Spinner
+                style={{ width: "8rem", height: "8rem" }}
+                animation='border'
+                variant='info'
+              />
+            </div>
+          ) : (
+            <Lergebanner data={banner} />
+          )}
         </section>
         <section>
           <div className='container'>

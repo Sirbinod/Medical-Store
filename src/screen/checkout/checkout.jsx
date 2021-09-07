@@ -7,6 +7,7 @@ import { authPost, normalPost } from "../../utility/requiest";
 import { addressapi, orderapi } from "../../utility/api";
 import { useDispatch, useSelector } from "react-redux";
 import { cartDate, cartEpty } from "../../store/action/cartAction";
+import { Spinner } from "react-bootstrap";
 const renderField = ({
   input,
   label,
@@ -144,7 +145,19 @@ const Checkout = (props) => {
                     </div>
                   </Col>
                   <Col>
+                    {modelState.error ? (
+                      <span style={{ color: "red" }}>{modelState.error}</span>
+                    ) : (
+                      <></>
+                    )}
                     <div className='place-order my-4'>
+                      <span className='mx-5 px-5'>
+                        {modelState.loading ? (
+                          <Spinner animation='border' variant='info' />
+                        ) : (
+                          <></>
+                        )}
+                      </span>
                       <button type='submit' disabled={pristine || submitting}>
                         Checkout Proccess
                       </button>
@@ -171,7 +184,9 @@ const Checkout = (props) => {
                       {cart.data && cart.data.totalQuantity !== 0 ? (
                         cart.data.products.map((cartProduct) => (
                           <li>
-                            <span>{cartProduct.product.name}</span>
+                            <span className='mb-3'>
+                              {cartProduct.product.name}
+                            </span>
                             <span className='order-middle-left'>
                               {cartProduct.quantity} X{" "}
                               {cartProduct.product.cost}

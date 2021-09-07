@@ -1,6 +1,12 @@
 import { loginapi } from "../../utility/api";
 import { authPost, normalPost } from "../../utility/requiest";
-import { LOGIN_START, LOGIN_SUCCESS, SIGNUP_START, LOGOUT } from "./actionType";
+import {
+  LOGIN_START,
+  LOGIN_SUCCESS,
+  SIGNUP_START,
+  LOGOUT,
+  ADD_PRECEPTION,
+} from "./actionType";
 
 export const loginOpen = () => {
   return {
@@ -36,4 +42,12 @@ export const login = (data) => {
 
 export const logout = () => async (dispatch) => {
   dispatch(logOut());
+};
+
+//model ADD_PRECEPTION
+
+export const addPreception = () => {
+  return {
+    type: ADD_PRECEPTION,
+  };
 };

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Spinner } from "react-bootstrap";
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import { BsGrid3X3Gap, BsListUl } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
@@ -169,7 +169,15 @@ const Filter_page = (props) => {
                 {isGrid ? (
                   <Row>
                     {loading ? (
-                      <>loading..</>
+                      <Spinner
+                        style={{
+                          width: "4rem",
+                          height: "4rem",
+                          margin: "2rem 3rem",
+                        }}
+                        animation='border'
+                        variant='info'
+                      />
                     ) : (
                       firstFilterData &&
                       firstFilterData.map((data) => (
@@ -182,7 +190,15 @@ const Filter_page = (props) => {
                 ) : (
                   <Row>
                     {loading ? (
-                      <>loading..</>
+                      <Spinner
+                        style={{
+                          width: "4rem",
+                          height: "4rem",
+                          margin: "2rem 3rem",
+                        }}
+                        animation='border'
+                        variant='info'
+                      />
                     ) : firstFilterData ? (
                       firstFilterData.map((listData) => (
                         <div className='mb-4'>
@@ -203,7 +219,15 @@ const Filter_page = (props) => {
               <h3 className='most-popular-title'>Related Products</h3>
             </div>
             {loading ? (
-              <>loading...</>
+              <Spinner
+                style={{
+                  width: "4rem",
+                  height: "4rem",
+                  margin: "2rem 3rem",
+                }}
+                animation='border'
+                variant='info'
+              />
             ) : (
               <Carousel responsive={responsive}>
                 {product && product.map((data) => <Justforyou data={data} />)}
